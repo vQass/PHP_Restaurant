@@ -50,7 +50,7 @@ require_once("paths.php");
         }
         ?>
 
-
+        <a href="PatrykTestLogiki.php">Testy logiki pozdrawiam z rodzinką</a>
         <div class="MainPage">
             <h1>Menu:</h1>
             <ul>

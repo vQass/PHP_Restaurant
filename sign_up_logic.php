@@ -96,6 +96,17 @@ if (isset($_POST['email'])) {
 
             $password = sha1($password);
 
+            // $queryName = ;
+            // $queryCity = ;
+            // $queryAddress = ;
+            // $queryPhone = ;
+
+
+
+
+            $sth = $dbh->query("INSERT INTO `users`(`name` , `city`, `address`, `phone`, `password`, `email`) VALUES ('Patryk', 'Gliwice', 'Polna 23', '123456789', 'pass','Test@gmail.com')");
+
+
             $sth = $dbh->query("INSERT INTO users  VALUES (NULL, '$name', 'user', '$city', '$address', '$phone', '1', '$password', '$email')");
         } catch (Exception $e) {
             $_SESSION['general_message'] = '<div class="alert alert-danger alert-dismissible fade show absolute transparent" role="alert">
