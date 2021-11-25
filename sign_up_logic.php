@@ -6,6 +6,8 @@ if (isset($_POST['email'])) {
 
     $data_valid = true;
 
+    $city = $_POST['city'];
+
     $password = $_POST['password'];
     if ((strlen($password) < 2) || (strlen($password) > 20)) {
         $data_valid = false;
