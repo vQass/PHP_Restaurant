@@ -1,6 +1,6 @@
 <?php
 // nie wiem czy mieliście jakiś plan jak to zrobić, na razie zrobiłem tak
-$pHome = "start.php";
+$pHome = "index.php";
 $pDbConnection = "connect.php";
 $pSignInView = "index.php";
 $pSignInLogic = "sign_in_logic.php";

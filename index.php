@@ -10,25 +10,19 @@ require_once("paths.php");
 <html>
 
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
     <script src="jquery.js"></script>
     <script src="index.js"></script>
-
-    <style>
-        .error {
-            color: white;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-    </style>
-
-
 </head>
 
 <body>
@@ -47,6 +41,14 @@ require_once("paths.php");
                 </ul>
             </nav>
         </div>
+
+        <?php
+
+        if (isset($_SESSION['general_message'])) {
+            echo $_SESSION['general_message'];
+            unset($_SESSION['general_message']);
+        }
+        ?>
 
 
         <div class="MainPage">
@@ -88,17 +90,21 @@ require_once("paths.php");
         <div class="LogIn">
             <div class="close_button" id="close_singin"><img class="close_button_image" src="images/pizza_open.svg"></div>
             <h1>Logowanie:</h1>
+            <?php
+            echo "<form action='$pSignInLogic' method='POST' class='g-3 needs-validation' novalidate>"
+            ?>
             <div class="col-md-12 login_input">
                 <label for="InputEmail" class="form-label">E-mail*</label>
-                <input type="text" class="form-control" id="InputEmail" name="InputEmail" required>
+                <input type="text" class="form-control" id="InputEmail" name="email">
             </div>
             <div class="col-md-12 login_input">
                 <label for="InputPassword" class="form-label">Hasło*</label>
-                <input type="password" class="form-control" id="InputPassword" name="InputPassword" required>
+                <input type="password" class="form-control" id="InputPassword" name="password">
             </div>
             <div class="col-12" style="padding: 20px">
                 <button class="btn btn-primary" type="submit">Zaloguj</button>
             </div>
+            </form>
         </div>
     </div>
 
