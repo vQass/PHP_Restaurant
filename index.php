@@ -116,15 +116,16 @@ if (isset($_SESSION['u_city'])) {
     <div class="Main">
         <div class="Sidebar">
             <nav>
-                <div class="Navbar">
-                    <h1>Restauracja u Mentzena</h1>
+                <img src="logo.jpg" alt="Logo" width="140px" height="98px">
+                <div class="logomen">
+                    <h1>Res<span class="fast-flicker">tau</span>racja u Men<span class="flicker">tze</span>na</h1>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="nic.html">Strona główna</a></li>
-                    <li><a href="nic.html">Menu</a></li>
-                    <li><a href="nic.html">Kontakt</a></li>
-                    <li><a id="singin">Logowanie</a></li>
-                    <li><a id="singup">Rejestracja</a></li>
+                    <li>Strona główna</li>
+                    <li>Menu</li>
+                    <li>Kontakt</li>
+                    <li id="singin">Logowanie</li>
+                    <li id="singup">Rejestracja</li>
                 </ul>
             </nav>
         </div>
@@ -172,8 +173,8 @@ if (isset($_SESSION['u_city'])) {
                 <li>pt. 10:00-18:00</li>
                 <li>sb. 10:00-20:00</li>
             </ul>
-            <h4>Dojazd</h4>
-            <p>Tutaj będzie mapa google</p>
+            <p onclick="showDiv()"> >>> Jak dojechac? *CLICK* <<< </p>
+                    <div id="google" style="display:none"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1095.329220266166!2d18.678521863440235!3d50.28589039078352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471131030b062f91%3A0x3e9d8c258fb6d04c!2sDom%20Studencki%20Elektron!5e0!3m2!1spl!2spl!4v1638126762822!5m2!1spl!2spl" width=100% height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
         </div>
     </div>
 
