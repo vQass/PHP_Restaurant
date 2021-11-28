@@ -5,31 +5,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-/**/
-
-.center {
-  width: 30%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.absolute {
-  width: 80%;
-  max-width: 800px;
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  left: 0;
-  right: 0;
-  text-align: center;
-}
-
-.transparent {
-  opacity: 0.9;
-}
-/* moje, poukładać :)*/
-
 nav {
   display: flex;
   justify-content: space-around;
@@ -101,7 +76,8 @@ nav {
   position: relative;
   width: 300px;
   height: 620px;
-  background-color: #e00505da;
+  /* background-color: #e00505da; */
+  background-color: gray;
   border-radius: 5px;
   padding: 10px;
   color: #dfdfdf;
@@ -129,3 +105,33 @@ nav {
   filter: invert(80%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%)
     contrast(100%);
 }
+
+/**/
+
+.alert {
+  margin-top: 8px;
+  margin-bottom: 0px !important;
+}
+
+.center {
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.absolute {
+  width: 80%;
+  max-width: 800px;
+  position: absolute !important;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.transparent {
+  opacity: 0.9;
+}
+/* moje, poukładać :)*/
