@@ -1,10 +1,5 @@
 <?php
 require_once("paths.php");
-$_SESSION['general_message'] = '<div class="alert alert-danger alert-dismissible fade show absolute transparent" role="alert">
-AAAAAA
-<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>';
-
 
 if ((!isset($_POST['email'])) || (!isset($_POST['password']))) {
   header("Location: $pHome");
@@ -15,6 +10,7 @@ session_start();
 
 try {
   require_once($pDbConnection);
+  require_once($sharedFunctions);
 
   $email = $_POST['email'];
   $pass = $_POST['password'];
@@ -29,51 +25,37 @@ try {
       $row = $sth->fetch();
 
       if (sha1($pass) == $row['password']) {
-        $_SESSION['u_id'] = $row['id'];
-        $_SESSION['u_name'] = $row['name'];
-        $_SESSION['u_permission'] = $row['permission'];
-        $_SESSION['u_email'] = $row['email'];
+        $_SESSION['user_id'] = $row['id'];
+        $_SESSION['user_permission'] = $row['permission'];
+        $_SESSION['user_email'] = $row['email'];
 
-        $_SESSION['general_message'] = '<div class="alert alert-success alert-dismissible fade show absolute transparent" role="alert">
-        Witaj ' . $_SESSION['u_name'] . '
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>';
+        $name = explode("@", $_SESSION['user_email'])[0];
 
+        $_SESSION['general_message'] = SuccessMessageGenerator("Witaj $name!");
 
         header("Location: $pHome"); // zmienic pozniej
       } else {
+
         // Błędne hasło dla podanego loginu
 
-        $_SESSION['general_message'] = '<div class="alert alert-danger alert-dismissible fade show absolute transparent" role="alert">
-        Nieprawidłowy login lub hasło!
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>';
+        $_SESSION['general_message'] = ErrorMessageGenerator("Nieprawidłowy login lub hasło!");
 
         header("Location: $pSignInView");
       }
     } else if ($recordCount <= 0) {
       // Nie znaleziono podanego emailu w bazie danych
-      $_SESSION['general_message'] = '<div class="alert alert-danger alert-dismissible fade show absolute transparent" role="alert">
-      Nieprawidłowy email!
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>';
+      $_SESSION['general_message'] = ErrorMessageGenerator("Nieprawidłowy email!");
 
       header("Location: $pSignInView");
     } else // recordCount > 1
     {
       // W bazie danych znaleziono więcej niż jedno wystąpienie podanego loginu. To nigdy nie powinno się wydarzyć
-      $_SESSION['general_message'] = '<div class="alert alert-danger alert-dismissible fade show absolute transparent" role="alert">
-      W bazie danych znajduje się kilku użytkowników z takim emailem, skontaktuj się supportem!
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>';
+      $_SESSION['general_message'] = ErrorMessageGenerator(" W bazie danych znajduje się kilku użytkowników z takim emailem, skontaktuj się supportem!");
       header("Location: $pSignInView");
     }
   }
 } catch (PDOException $ex) {
   // Brak połączenia z bazą danych
-  $_SESSION['general_message'] = '<div class="alert alert-danger alert-dismissible fade show absolute transparent" role="alert">
-  Nie nawiązano połączenia z bazą danych, prosimy spróbować później!
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>';
+  $_SESSION['general_message'] = ErrorMessageGenerator("Nie nawiązano połączenia z bazą danych, prosimy spróbować później!");
   header("Location: $pSignInView");
 }

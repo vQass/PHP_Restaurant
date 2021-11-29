@@ -3,7 +3,6 @@
   padding: 0px;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-
 }
 
 nav {
@@ -104,12 +103,14 @@ nav {
 .close_button_image {
   width: 30px;
   height: 30px;
-  filter: invert(95%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%) contrast(100%);
+  filter: invert(95%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%)
+    contrast(100%);
 }
 
 .close_button_image:hover {
   content: url("images/pizza_close.svg");
-  filter: invert(80%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%) contrast(100%);
+  filter: invert(80%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%)
+    contrast(100%);
 }
 
 /**/
@@ -128,7 +129,7 @@ nav {
 .absolute {
   width: 80%;
   max-width: 800px;
-  position: absolute !important;
+  position: absolute;
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
@@ -141,6 +142,15 @@ nav {
   opacity: 0.9;
 }
 
+#backgroundImg {
+  height: 92vh;
+  background-image: url("pizzaBackground.jpg"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 92vh; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
 /* moje, poukładać :)*/
 
 nav img {
@@ -169,15 +179,15 @@ nav img {
 }
 
 @keyframes blink {
-
   0%,
   22%,
   36%,
   75% {
     color: white;
     text-shadow: 0 0 0.6rem white, 0 0 1.5rem RGB(243, 111, 39),
-      -0.2rem 0.1rem 1rem RGB(243, 111, 39), 0.2rem 0.1rem 1rem RGB(243, 111, 39),
-      0 -0.5rem 2rem RGB(243, 176, 97), 0 0.5rem 3rem RGB(243, 176, 97);
+      -0.2rem 0.1rem 1rem RGB(243, 111, 39),
+      0.2rem 0.1rem 1rem RGB(243, 111, 39), 0 -0.5rem 2rem RGB(243, 176, 97),
+      0 0.5rem 3rem RGB(243, 176, 97);
   }
 
   28%,
@@ -210,8 +220,9 @@ nav img {
   100% {
     color: white;
     text-shadow: 0 0 0.6rem white, 0 0 1.5rem RGB(243, 111, 39),
-      -0.2rem 0.1rem 1rem RGB(243, 111, 39), 0.2rem 0.1rem 1rem RGB(243, 111, 39),
-      0 -0.5rem 2rem RGB(243, 176, 97), 0 0.5rem 3rem RGB(243, 176, 97);
+      -0.2rem 0.1rem 1rem RGB(243, 111, 39),
+      0.2rem 0.1rem 1rem RGB(243, 111, 39), 0 -0.5rem 2rem RGB(243, 176, 97),
+      0 0.5rem 3rem RGB(243, 176, 97);
   }
 }
 

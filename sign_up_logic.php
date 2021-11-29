@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once "paths.php";
-require_once "shared_functions.php";
+require_once($sharedFunctions);
 
 if (isset($_POST['email'])) {
 
@@ -139,7 +139,6 @@ if (isset($_POST['email'])) {
         }
     }
 
-    //$_SESSION['dataValid'] = $data_valid;
     if ($data_valid) {
         try {
 

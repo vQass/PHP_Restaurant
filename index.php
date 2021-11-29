@@ -1,88 +1,8 @@
 <?php
-session_start();
 require_once("connect.php");
 require_once("paths.php");
-require_once "shared_functions.php"; // w finalnej wersji można usunąć, na razie do testów alertów  
-
-// Dane wymagane
-if (isset($_SESSION['v_email'])) {
-    $vEmail = $_SESSION['v_email'];
-    unset($_SESSION['v_email']);
-} else $vEmail = "";
-
-if (isset($_SESSION['v_password'])) {
-    $vPassword = $_SESSION['v_password'];
-    unset($_SESSION['v_password']);
-} else $vPassword = "";
-
-if (isset($_SESSION['v_password2'])) {
-    $vPassword2 = $_SESSION['v_password2'];
-    unset($_SESSION['v_password2']);
-} else $vPassword2 = "";
-
-// Dane opcjonalne
-if (isset($_SESSION['v_name'])) {
-    $vName = $_SESSION['v_name'];
-    unset($_SESSION['v_name']);
-} else $vName = "";
-
-if (isset($_SESSION['v_address'])) {
-    $vAddress = $_SESSION['v_address'];
-    unset($_SESSION['v_address']);
-} else $vAddress = "";
-
-if (isset($_SESSION['v_phone'])) {
-    $vPhone = $_SESSION['v_phone'];
-    unset($_SESSION['v_phone']);
-} else $vPhone = "";
-
-// Dane do formularza rejestracji jeśli nie wszystkie były poprawne
-
-$uDefault = "selected";
-$uGliwice = "";
-$uKatowice = "";
-$uZabrze = "";
-
-// Dane wymagane
-if (isset($_SESSION['u_email'])) {
-    $uEmail = $_SESSION['u_email'];
-    unset($_SESSION['u_email']);
-} else $uEmail = "";
-
-// Dane opcjonalne
-if (isset($_SESSION['u_name'])) {
-    $uName = $_SESSION['u_name'];
-    unset($_SESSION['u_name']);
-} else $uName = "";
-
-if (isset($_SESSION['u_address'])) {
-    $uAddress = $_SESSION['u_address'];
-    unset($_SESSION['u_address']);
-} else $uAddress = "";
-
-if (isset($_SESSION['u_phone'])) {
-    $uPhone = $_SESSION['u_phone'];
-    unset($_SESSION['u_phone']);
-} else $uPhone = "";
-
-if (isset($_SESSION['u_city'])) {
-
-    if ($_SESSION['u_city'] == "Gliwice") {
-        $uGliwice = "selected";
-        $uDefault = "";
-    } else if ($_SESSION['u_city'] == "Katowice") {
-        $uKatowice = "selected";
-        $uDefault = "";
-    } else if ($_SESSION['u_city'] == "Zabrze") {
-        $uZabrze = "selected";
-        $uDefault = "";
-    }
-    unset($_SESSION['u_city']);
-}
-
-
-
-
+require_once("shared_functions.php"); // w finalnej wersji można usunąć, na razie do testów alertów  
+require_once("index_logic.php");
 
 ?>
 
@@ -105,7 +25,7 @@ if (isset($_SESSION['u_city'])) {
 </head>
 
 <body>
-
+    <!-- Otwieranie formularza jeśli dane do rejestacji były błędne  -->
     <?php
     if (isset($_SESSION['v_register'])) {
         echo "<script> $(document).ready(function() { $('#singup_container').css('visibility', 'visible'); }); </script>";
@@ -124,26 +44,27 @@ if (isset($_SESSION['u_city'])) {
                     <li onclick="document.body.scrollTop = document.documentElement.scrollTop = 0">Strona główna</li>
                     <li onclick="smoothScroll(document.getElementById('menu'))">Menu</li>
                     <li onclick="smoothScroll(document.getElementById('kontakt'))">Kontakt</li>
-                    <li id="singin">Logowanie</li>
-                    <li id="singup">Rejestracja</li>
+                    <li id="singin" style='<?php echo $displaySignIn ?>'>Logowanie</li>
+                    <li id="singup" style='<?php echo $displaySignUp ?>'>Rejestracja</li>
+                    <li id="logout" style='<?php echo $displayLogout ?>'>Wyloguj</li>
+                    <!-- Jak mam zrobić, żeby to wylogowało/usunęło sesje ^ POMOCY! -->
                 </ul>
             </nav>
         </div>
-        <img src="pizzaBackground.jpg" alt="Logo" width="100%">
         <div class="absolute">
             <?php
-            // echo SuccessMessageGenerator("działa"); //do testowania alertow
+            // echo SuccessMessageGenerator("działa"); //do testowania alertow 
             // echo SuccessMessageGenerator("działa"); //do testowania alertow
             // echo SuccessMessageGenerator("działa"); //do testowania alertow
             // echo ErrorMessageGenerator("nie działa"); //do testowania alertow
             if (isset($_SESSION['general_message'])) {
-
-
                 echo $_SESSION['general_message'];
                 unset($_SESSION['general_message']);
             }
             ?>
         </div>
+        <div id="backgroundImg"></div>
+
 
         <div class="MainPage">
             <h1 id="menu">Menu:</h1>
@@ -225,46 +146,25 @@ if (isset($_SESSION['u_city'])) {
             <h1>Rejestracja:</h1>
 
             <form action='<?php echo $pSignUpValidation ?>' method='POST' class='g-3'>
-                <!-- needs-validation novalidate -->
                 <div class="col-md-12">
                     <label for="inputName" class="form-label">Imie</label>
                     <input type="text" class="form-control <?php echo $vName ?>" id="Name" name="name" placeholder="Jan" value=<?php echo "'$uName'" ?>>
                 </div>
-                <?php
-                // if (isset($_SESSION['e_name'])) {
-                //     echo '<div class="error">' . $_SESSION['e_name'] . '</div>';
-                //     unset($_SESSION['e_name']);
-                // }
-                ?>
+
                 <div class="col-md-12">
                     <label for="inputEmail" class="form-label">E-mail</label>
                     <input type="text" class="form-control <?php echo $vEmail ?>" id="Email" name="email" placeholder="Jan_Nowak@gmail.com" value=<?php echo "'$uEmail'" ?>>
                 </div>
-                <?php
-                // if (isset($_SESSION['e_email'])) {
-                //     echo '<div class="error">' . $_SESSION['e_email'] . '</div>';
-                //     unset($_SESSION['e_email']);
-                // }
-                ?>
+
                 <div class="col-md-12">
                     <label for="inputPassword" class="form-label">Hasło</label>
                     <input type="password" class="form-control <?php echo $vPassword ?>" id="Password" name="password" placeholder="********">
-                    <?php
-                    // if (isset($_SESSION['e_password'])) {
-                    //     echo '<div class="error">' . $_SESSION['e_password'] . '</div>';
-                    //     unset($_SESSION['e_password']);
-                    // }
-                    ?>
+
                 </div>
                 <div class="col-md-12">
                     <label for="inputPassword2" class="form-label">Powtórz hasło</label>
                     <input type="password" class="form-control <?php echo $vPassword2 ?>" id="inputPassword2" name="password2" placeholder="********">
-                    <?php
-                    // if (isset($_SESSION['e_password2'])) {
-                    //     echo '<div class="error">' . $_SESSION['e_password2'] . '</div>';
-                    //     unset($_SESSION['e_password2']);
-                    // }
-                    ?>
+
                 </div>
                 <div class="col-md-12" style="margin-top: 15px">
                     <label for="inputCity" class="form-label">Miasto</label>
@@ -278,22 +178,12 @@ if (isset($_SESSION['u_city'])) {
                 <div class="col-md-12">
                     <label for="inputAdress" class="form-label">Adres</label>
                     <input type="text" class="form-control <?php echo $vAddress ?>" id="inputAdress" name="address" placeholder="Wiejska 4/6/8" value=<?php echo "'$uAddress'" ?>>
-                    <?php
-                    // if (isset($_SESSION['e_address'])) {
-                    //     echo '<div class="error">' . $_SESSION['e_address'] . '</div>';
-                    //     unset($_SESSION['e_address']);
-                    // }
-                    ?>
+
                 </div>
                 <div class="col-md-12">
                     <label for="inputTelephoneNumber" class="form-label">Numer telefonu</label>
                     <input type="text" maxlength="9" class="form-control <?php echo $vPhone ?>" id="inputTelephoneNumber" name="phone" placeholder="123654956" value=<?php echo "'$uPhone'" ?>>
-                    <?php
-                    // if (isset($_SESSION['e_phone'])) {
-                    //     echo '<div class="error">' . $_SESSION['e_phone'] . '</div>';
-                    //     unset($_SESSION['e_phone']);
-                    // }
-                    ?>
+
                 </div>
                 <div class="col-12" style="padding: 20px">
                     <button class="btn btn-primary" type="submit">Zarejestruj</button>
@@ -301,7 +191,7 @@ if (isset($_SESSION['u_city'])) {
             </form>
         </div>
     </div>
-    <script>
+    <!-- <script>
         (function() {
             'use strict'
 
@@ -321,7 +211,7 @@ if (isset($_SESSION['u_city'])) {
                     }, false)
                 })
         })()
-    </script>
+    </script> -->
 </body>
 
 </html>

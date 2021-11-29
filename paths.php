@@ -1,8 +1,11 @@
 <?php
 // nie wiem czy mieliście jakiś plan jak to zrobić, na razie zrobiłem tak
+// trzeba dodac te rootpath ktore nam pokazywali
+
 $pHome = "index.php";
 $pDbConnection = "connect.php";
 $pSignInView = "index.php";
 $pSignInLogic = "sign_in_logic.php";
 $pSignUpView = "sign_up_view.php";
 $pSignUpValidation = "sign_up_logic.php";
+$sharedFunctions = "shared_functions.php";
