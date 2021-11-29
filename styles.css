@@ -3,6 +3,7 @@
   padding: 0px;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+
 }
 
 nav {
@@ -29,6 +30,7 @@ nav {
 }
 
 .nav-links li {
+  padding: 5px;
   color: rgb(225, 225, 225);
   text-decoration: none;
   letter-spacing: 3px;

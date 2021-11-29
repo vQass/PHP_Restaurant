@@ -118,7 +118,7 @@ if (isset($_SESSION['u_city'])) {
             <nav>
                 <img src="logo.jpg" alt="Logo" width="140px" height="98px">
                 <div class="logomen">
-                    <h1>Res<span class="fast-flicker">tau</span>racja u Men<span class="flicker">tze</span>na</h1>
+                    <h1>Restau<span class="fast-flicker">racja</span> u <span class="flicker">Mentzena</span></h1>
                 </div>
                 <ul class="nav-links">
                     <li>Strona główna</li>

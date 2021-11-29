@@ -18,6 +18,11 @@ $(document).ready(function () {
 });
 
 function showDiv() {
-    document.getElementById('google').style.display = "block";
+    if (document.getElementById('google').style.display == "block") {
+        document.getElementById('google').style.display = "none";
+    }
+    else {
+        document.getElementById('google').style.display = "block";
+    }
 }
 
