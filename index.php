@@ -121,15 +121,15 @@ if (isset($_SESSION['u_city'])) {
                     <h1>Restau<span class="fast-flicker">racja</span> u <span class="flicker">Mentzena</span></h1>
                 </div>
                 <ul class="nav-links">
-                    <li>Strona główna</li>
-                    <li>Menu</li>
-                    <li>Kontakt</li>
+                    <li onclick="document.body.scrollTop = document.documentElement.scrollTop = 0">Strona główna</li>
+                    <li onclick="smoothScroll(document.getElementById('menu'))">Menu</li>
+                    <li onclick="smoothScroll(document.getElementById('kontakt'))">Kontakt</li>
                     <li id="singin">Logowanie</li>
                     <li id="singup">Rejestracja</li>
                 </ul>
             </nav>
         </div>
-
+        <img src="pizzaBackground.jpg" alt="Logo" width="100%">
         <div class="absolute">
             <?php
             // echo SuccessMessageGenerator("działa"); //do testowania alertow
@@ -146,7 +146,7 @@ if (isset($_SESSION['u_city'])) {
         </div>
 
         <div class="MainPage">
-            <h1>Menu:</h1>
+            <h1 id="menu">Menu:</h1>
             <ul>
                 <li> Pizza 1</li>
                 <li> Pizza 2</li>
@@ -158,12 +158,33 @@ if (isset($_SESSION['u_city'])) {
                 <li> Pizza 8</li>
                 <li> Pizza 9</li>
                 <li> Pizza 10</li>
+                <li> Pizza 1</li>
+                <li> Pizza 2</li>
+                <li> Pizza 3</li>
+                <li> Pizza 4</li>
+                <li> Pizza 5</li>
+                <li> Pizza 6</li>
+                <li> Pizza 7</li>
+                <li> Pizza 8</li>
+                <li> Pizza 9</li>
+                <li> Pizza 10</li>
+                <li> Pizza 1</li>
+                <li> Pizza 2</li>
+                <li> Pizza 3</li>
+                <li> Pizza 4</li>
+                <li> Pizza 5</li>
+                <li> Pizza 6</li>
+                <li> Pizza 7</li>
+                <li> Pizza 8</li>
+                <li> Pizza 9</li>
+                <li> Pizza 10</li>
+
             </ul>
         </div>
 
 
         <div class="Contact">
-            <h1>Kontakt</h1>
+            <h1 id="kontakt">Kontakt</h1>
             <p> Godziny otwarcia restauracji: </p>
             <ul>
                 <li>pon. 10:00-18:00</li>

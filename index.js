@@ -26,3 +26,7 @@ function showDiv() {
     }
 }
 
+function smoothScroll(element) { //Tak srednio bym powiedzial ~Piotr
+    element.scrollIntoView({ alignToTop: "smooth", block: "center" });
+}
+
