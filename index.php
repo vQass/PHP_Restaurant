@@ -63,8 +63,9 @@ require_once("index_logic.php");
             }
             ?>
         </div>
-        <div id="backgroundImg"></div>
-
+        <div id="backgroundImg">
+            <!-- <img src="pizzaBackground.jpg" alt="Logo" width="100%"> -->
+        </div>
 
         <div class="MainPage">
             <h1 id="menu">Menu:</h1>

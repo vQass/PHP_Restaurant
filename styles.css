@@ -13,13 +13,15 @@ nav {
   background-color: RGB(38, 40, 55);
 }
 
-/* .Navbar {
-  width: 40%;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  font-size: 30px;
-} */
+#backgroundImg {
+  height: 92vh;
+  background-image: url("pizzaBackground.jpg");
+  background-color: #cccccc;
+  height: 92vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 .nav-links {
   display: flex;
@@ -103,14 +105,12 @@ nav {
 .close_button_image {
   width: 30px;
   height: 30px;
-  filter: invert(95%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%)
-    contrast(100%);
+  filter: invert(95%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%) contrast(100%);
 }
 
 .close_button_image:hover {
   content: url("images/pizza_close.svg");
-  filter: invert(80%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%)
-    contrast(100%);
+  filter: invert(80%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%) contrast(100%);
 }
 
 /**/
@@ -144,13 +144,20 @@ nav {
 
 #backgroundImg {
   height: 92vh;
-  background-image: url("pizzaBackground.jpg"); /* The image used */
-  background-color: #cccccc; /* Used if the image is unavailable */
-  height: 92vh; /* You must set a specified height */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+  background-image: url("pizzaBackground.jpg");
+  /* The image used */
+  background-color: #cccccc;
+  /* Used if the image is unavailable */
+  height: 92vh;
+  /* You must set a specified height */
+  background-position: center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+  /* Resize the background image to cover the entire container */
 }
+
 /* moje, poukładać :)*/
 
 nav img {
@@ -179,6 +186,7 @@ nav img {
 }
 
 @keyframes blink {
+
   0%,
   22%,
   36%,
