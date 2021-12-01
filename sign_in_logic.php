@@ -10,7 +10,7 @@ session_start();
 
 try {
   require_once($pDbConnection);
-  require_once($sharedFunctions);
+  require_once($pSharedFunctions);
 
   $email = $_POST['email'];
   $pass = $_POST['password'];

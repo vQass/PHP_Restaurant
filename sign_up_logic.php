@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once "paths.php";
-require_once($sharedFunctions);
+require_once($pSharedFunctions);
 
 if (isset($_POST['email'])) {
 

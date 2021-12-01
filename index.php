@@ -1,9 +1,10 @@
 <?php
-require_once("connect.php");
-require_once("paths.php");
-require_once("shared_functions.php"); // w finalnej wersji można usunąć, na razie do testów alertów  
-require_once("index_logic.php");
 
+session_start();
+require_once("paths.php");
+// require_once("$pDbConnection");
+require_once("$pSharedFunctions"); // w finalnej wersji można usunąć, na razie do testów alertów  
+require_once("$pIndexLogic");
 ?>
 
 <html>
@@ -42,21 +43,22 @@ require_once("index_logic.php");
                 </div>
                 <ul class="nav-links">
                     <li onclick="document.body.scrollTop = document.documentElement.scrollTop = 0">Strona główna</li>
-                    <li onclick="smoothScroll(document.getElementById('menu'))">Menu</li>
-                    <li onclick="smoothScroll(document.getElementById('kontakt'))">Kontakt</li>
+                    <li id="menu_button">Menu</li>
+                    <li id="kontakt_button">Kontakt</li>
                     <li id="singin" style='<?php echo $displaySignIn ?>'>Logowanie</li>
                     <li id="singup" style='<?php echo $displaySignUp ?>'>Rejestracja</li>
-                    <li id="logout" style='<?php echo $displayLogout ?>'>Wyloguj</li>
-                    <!-- Jak mam zrobić, żeby to wylogowało/usunęło sesje ^ POMOCY! -->
+                    <a href="<?php echo $pLogout ?>">
+                        <li id="logout" style='<?php echo $displayLogout ?>'>Wyloguj</li>
+                    </a>
+                    <a href="<?php echo $pAdminPanel ?>">
+                        <li id="users_list" style='<?php echo $displayAdminPanel ?>'>Panel administratora</li> <!-- Tylko dla administratora -->
+                    </a>
+
                 </ul>
             </nav>
         </div>
         <div class="absolute">
             <?php
-            // echo SuccessMessageGenerator("działa"); //do testowania alertow 
-            // echo SuccessMessageGenerator("działa"); //do testowania alertow
-            // echo SuccessMessageGenerator("działa"); //do testowania alertow
-            // echo ErrorMessageGenerator("nie działa"); //do testowania alertow
             if (isset($_SESSION['general_message'])) {
                 echo $_SESSION['general_message'];
                 unset($_SESSION['general_message']);
@@ -191,27 +193,7 @@ require_once("index_logic.php");
             </form>
         </div>
     </div>
-    <!-- <script>
-        (function() {
-            'use strict'
 
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.querySelectorAll('.needs-validation')
-
-            // Loop over them and prevent submission
-            Array.prototype.slice.call(forms)
-                .forEach(function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
-
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-        })()
-    </script> -->
 </body>
 
 </html>

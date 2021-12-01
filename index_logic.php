@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 // Dane wymagane 
 // v_zmienna - is-valid lub is-invalid - używane do sylizacji inputów
@@ -80,12 +79,18 @@ if (isset($_SESSION['u_city'])) {
 }
 
 // Po zalogowaniu
+$displayAdminPanel = "display: none";
 if (isset($_SESSION['user_email'])) {
   $displaySignIn = 'display: none';
   $displaySignUp = 'display: none';
   $displayLogOut = '';
+  if (isset($_SESSION['user_permission'])) {
+    if ($_SESSION['user_permission'] == "admin") {
+      $displayAdminPanel = "";
+    }
+  }
 } else {
   $displaySignIn = "";
   $displaySignUp = "";
-  $displayLogOut = 'display: none';
+  $displayLogout = 'display: none';
 }

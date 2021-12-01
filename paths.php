@@ -1,11 +1,16 @@
 <?php
-// nie wiem czy mieliście jakiś plan jak to zrobić, na razie zrobiłem tak
-// trzeba dodac te rootpath ktore nam pokazywali
+// pasuje chyba dodac te rootpath ktore nam pokazywali
 
-$pHome = "index.php";
-$pDbConnection = "connect.php";
-$pSignInView = "index.php";
-$pSignInLogic = "sign_in_logic.php";
-$pSignUpView = "sign_up_view.php";
-$pSignUpValidation = "sign_up_logic.php";
-$sharedFunctions = "shared_functions.php";
+$pDbConnection      = "connect.php";
+$pSharedFunctions   = "shared_functions.php";
+$pIndexLogic        = "index_logic.php";
+$pHome              = "index.php";
+$pSignInView        = "index.php";
+$pSignUpView        = "sign_up_view.php"; // ?? chyba index tu powinien byc, polecialem, sprawdzic pozniej;
+$pSignInLogic       = "sign_in_logic.php";
+$pLogout            = "logout.php";
+$pSignUpValidation  = "sign_up_logic.php";
+$pAdminPanel        = "admin_panel.php";
+$pUsersList         = "users_list.php";
+$pUsersEdit         = "users_edit.php";
+$pUsersEditValidation = "users_edit_validation.php";
