@@ -110,9 +110,22 @@ if (isset($_POST['email'])) {
     }
   }
 
+  // WAŻNE!
+
+
+
+
+
   // Dodac walidacje uprawnień np admin nie może zmienić zmieniać swojego uprawnienia
   $permission = $_POST['permission'];
   $permissionQuery = "`permission`='$permission', ";
+  $_SESSION['eu_permission'] = $permission;
+
+
+
+
+
+  // KONIEC WAŻNEGO!
 
   if ($data_valid) {
     try {
@@ -170,13 +183,13 @@ if (isset($_POST['email'])) {
       unset($_SESSION['eu_phone']);
       unset($_SESSION['eu_email']);
 
-      // unset($_SESSION['ve_password']);
-      // unset($_SESSION['ve_password2']);
-      // unset($_SESSION['ve_email']);
-      // unset($_SESSION['ve_name']);
-      // unset($_SESSION['ve_city']);
-      // unset($_SESSION['ve_address']);
-      // unset($_SESSION['ve_phone']);
+      unset($_SESSION['ve_password']);
+      unset($_SESSION['ve_password2']);
+      unset($_SESSION['ve_email']);
+      unset($_SESSION['ve_name']);
+      unset($_SESSION['ve_city']);
+      unset($_SESSION['ve_address']);
+      unset($_SESSION['ve_phone']);
     } catch (Exception $e) {
 
       $_SESSION['general_message'] .= ErrorMessageGenerator("Błąd podczas edycji użytkownika");

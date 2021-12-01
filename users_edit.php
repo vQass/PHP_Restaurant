@@ -61,6 +61,10 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
     $email = "";
   }
 
+  $katowice = "";
+  $gliwice = "";
+  $zabrze = "";
+  $default = "";
   if (isset($_SESSION['eu_city'])) {
     if ($_SESSION['eu_city'] == "Katowice") {
       $katowice = "selected";
