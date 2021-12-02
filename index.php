@@ -118,8 +118,15 @@ require_once("$pIndexLogic");
                 <li>pt. 10:00-18:00</li>
                 <li>sb. 10:00-20:00</li>
             </ul>
-            <p onclick="showDiv()"> >>> Jak dojechac? *CLICK* <<< </p>
-                    <div id="google" style="display:none"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1095.329220266166!2d18.678521863440235!3d50.28589039078352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471131030b062f91%3A0x3e9d8c258fb6d04c!2sDom%20Studencki%20Elektron!5e0!3m2!1spl!2spl!4v1638126762822!5m2!1spl!2spl" width=100% height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+            <p onclick="showDiv()" id="dojazd"> >>> Jak dojechac? *CLICK* <<< </p>
+                    <div id="google" style="display:none">
+                        <div class="car">
+                            <img src="car.png">
+                            <img src="wheel.png" class="back-wheel">
+                            <img src="wheel.png" class="front-wheel">
+                        </div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1095.329220266166!2d18.678521863440235!3d50.28589039078352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471131030b062f91%3A0x3e9d8c258fb6d04c!2sDom%20Studencki%20Elektron!5e0!3m2!1spl!2spl!4v1638126762822!5m2!1spl!2spl" width=100% height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
         </div>
     </div>
 

@@ -31,6 +31,7 @@ nav {
 }
 
 .nav-links li {
+  cursor: pointer;
   padding: 5px;
   color: rgb(225, 225, 225);
   text-decoration: none;
@@ -38,6 +39,37 @@ nav {
   font-weight: bold;
   font-size: 14px;
   list-style: none;
+}
+
+@font-face {
+  font-family: 'pizza';
+  src: url('pizza.eot?45830896');
+  src: url('pizza.eot?45830896#iefix') format('embedded-opentype'),
+    url('pizza.woff2?45830896') format('woff2'),
+    url('pizza.woff?45830896') format('woff'),
+    url('pizza.ttf?45830896') format('truetype'),
+    url('pizza.svg?45830896#pizza') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+input[type="password"] {
+  font-family: "pizza" !important;
+  font-style: normal;
+  font-weight: normal;
+  speak-as: none;
+
+  font-variant: normal;
+  text-transform: none;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  letter-spacing: 2px;
+}
+
+.icon-pizza_:before {
+  content: '\e800';
 }
 
 .nav-links li:hover {
@@ -113,6 +145,10 @@ nav {
   filter: invert(80%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%) contrast(100%);
 }
 
+#dojazd {
+  cursor: pointer;
+}
+
 /**/
 
 .alert {
@@ -145,17 +181,11 @@ nav {
 #backgroundImg {
   height: 92vh;
   background-image: url("pizzaBackground.jpg");
-  /* The image used */
   background-color: #cccccc;
-  /* Used if the image is unavailable */
   height: 92vh;
-  /* You must set a specified height */
   background-position: center;
-  /* Center the image */
   background-repeat: no-repeat;
-  /* Do not repeat the image */
   background-size: cover;
-  /* Resize the background image to cover the entire container */
 }
 
 /* moje, poukładać :)*/
@@ -165,6 +195,7 @@ nav img {
 }
 
 #google {
+  width: 100%;
   padding: 10px;
   border-top: 5px solid RGB(243, 111, 39);
 }
@@ -357,5 +388,64 @@ nav img {
 
   to {
     opacity: 1;
+  }
+}
+
+.car {
+  width: 100%;
+  z-index: 2;
+  animation: car 5s linear infinite;
+}
+
+.car img {
+  width: 400px;
+}
+
+@keyframes car {
+  100% {
+    transform: translateY(-1px);
+    transform: translateX(100%);
+  }
+
+  0% {
+    transform: translateY(-1px);
+    transform: translateX(-100%);
+  }
+}
+
+.back-wheel {
+  width: 72px !important;
+  height: 72px !important;
+  animation: wheel 1s linear infinite !important;
+  position: relative;
+  top: 43px;
+  left: -368px;
+}
+
+.front-wheel {
+  width: 72px !important;
+  height: 72px !important;
+  animation: wheel 1s linear infinite !important;
+  position: relative;
+  top: 43px;
+  left: -200px;
+}
+
+@-moz-keyframes wheel {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes wheel {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes wheel {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
