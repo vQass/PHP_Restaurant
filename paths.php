@@ -14,3 +14,4 @@ $pAdminPanel        = "admin_panel.php";
 $pUsersList         = "users_list.php";
 $pUsersEdit         = "users_edit.php";
 $pUsersEditValidation = "users_edit_validation.php";
+$pUsersDelete = "users_delete.php";

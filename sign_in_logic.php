@@ -16,7 +16,7 @@ try {
   $pass = $_POST['password'];
 
   // sprawdzic pozniej nazwy tabel
-  $sth = $dbh->prepare("SELECT * FROM users WHERE email = ?");
+  $sth = $dbh->prepare("SELECT id, email, password, permission FROM users WHERE email = ? AND isActive");
   //
   if ($sth->execute(array($email))) {
     $recordCount = $sth->rowCount();
@@ -54,8 +54,9 @@ try {
       header("Location: $pSignInView");
     }
   }
-} catch (PDOException $ex) {
+} catch (PDOException $e) {
   // Brak połączenia z bazą danych
   $_SESSION['general_message'] = ErrorMessageGenerator("Nie nawiązano połączenia z bazą danych, prosimy spróbować później!");
+  $_SESSION['general_message'] = ErrorMessageGenerator($e);
   header("Location: $pSignInView");
 }

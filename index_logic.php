@@ -78,6 +78,7 @@ if (isset($_SESSION['u_city'])) {
   unset($_SESSION['u_city']);
 }
 
+
 // Po zalogowaniu
 $displayAdminPanel = "display: none";
 if (isset($_SESSION['user_email'])) {

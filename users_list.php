@@ -21,8 +21,15 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
   // 
 
   if ($dbConnected) {
-    $sth = $dbh->query("SELECT id, name, permission, city, address, phone, email FROM users WHERE isActive");
 
+    // Użytkownicy aktywni 
+    try {
+      $sth = $dbh->query("SELECT id, name, permission, city, address, phone, email FROM users WHERE isActive");
+    } catch (Exception $e) {
+      $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania do bazy danych");
+      $_SESSION['general_message'] .= ErrorMessageGenerator($e);
+    }
+    echo "<h1 style='text-align: center;'>Użytkownicy aktywni</h1>";
     echo '<table class="center table table-striped table-hover" style="width: 80%; margin-left:auto; margin-right:auto">
             <tr>
                 <th>ID</th>
@@ -71,8 +78,8 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
                         <button name='edit' class='btn btn-outline-primary' type='submit' value='{$row['id']}'>Edytuj</button>
                     </form>
     
-                    <form method='post' action='user_usun.php'> 
-                         <button name='usun' class='btn btn-outline-danger' type='submit' value='{$row['id']}'>Usuń</button>
+                    <form method='post' action='$pUsersDelete'> 
+                         <button name='delete' class='btn btn-outline-danger' type='submit' value='{$row['id']}'>Usuń</button>
                     </form> 
     
                     <form method='post' action ='ksiazki_pozyczone.php'> 
@@ -82,6 +89,69 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
             </tr>";
     }
     echo '</table>';
+    // Użytkownicy aktywni koniec
+
+    // Użytkownicy nieaktywni 
+    try {
+      $sth = $dbh->query("SELECT id, name, permission, city, address, phone, email FROM users WHERE NOT isActive");
+    } catch (Exception $e) {
+      $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania do bazy danych");
+      $_SESSION['general_message'] .= ErrorMessageGenerator($e);
+    }
+    echo "<h1 style='text-align: center;'>Użytkownicy nieaktywni</h1>";
+    echo '<table class="center table table-striped table-hover" style="width: 80%; margin-left:auto; margin-right:auto">
+            <tr>
+                <th>ID</th>
+                <th>Imię</th>
+                <th>Uprawnienia</th>
+                <th>Miasto</th>
+                <th>Adres</th>
+                <th>Numer telefonu</th>
+                <th>Email</th>
+                <th>Akcja</th>
+            </tr>';
+    while ($row = $sth->fetch()) {
+      // jeśli w bazie jest null to wpisujemy do zmiennej napis NULL, inaczej jest puste pole w tabeli. Jeśli różne od NULL przypisujemy wartość z bazy
+      if ($row['name'] == NULL) {
+        $name = "NULL";
+      } else {
+        $name = $row['name'];
+      }
+      if ($row['city'] == NULL) {
+        $city = "NULL";
+      } else {
+        $city = $row['city'];
+      }
+      if ($row['address'] == NULL) {
+        $address = "NULL";
+      } else {
+        $address = $row['address'];
+      }
+      if ($row['phone'] == NULL) {
+        $phone = "NULL";
+      } else {
+        $phone = $row['phone'];
+      }
+
+      echo "
+            <tr>
+                <td>{$row['id']}</td>
+                <td>{$name}</td>
+                <td>{$row['permission']}</td>
+                <td>{$city}</td>
+                <td>{$address}</td>
+                <td>{$phone}</td>
+                <td>{$row['email']}</td>
+                <td class='center_form'>
+                    <form method='post' action ='$pUsersEdit'> 
+                        <button name='edit' class='btn btn-outline-primary' type='submit' value='{$row['id']}'>Robimy możliwość aktywacji konta?</button>
+                    </form>
+                </td>
+            </tr>";
+    }
+    echo '</table>';
+    // Użytkownicy nieaktywni koniec
+
   } else {
     header("Location: $pHome");
   }
