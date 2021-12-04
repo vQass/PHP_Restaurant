@@ -82,8 +82,8 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
                          <button name='delete' class='btn btn-outline-danger' type='submit' value='{$row['id']}'>Usuń</button>
                     </form> 
     
-                    <form method='post' action ='ksiazki_pozyczone.php'> 
-                        <button name='ksiazki' class='btn btn-outline-warning' type='submit' value='{$row['id']}'>Książki</button>
+                    <form method='post' action ='$pUsersOrders'> 
+                        <button name='ksiazki' class='btn btn-outline-warning' type='submit' value='{$row['id']}'>Zamówienia</button>
                     </form>  
                 </td>
             </tr>";
@@ -143,8 +143,8 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
                 <td>{$phone}</td>
                 <td>{$row['email']}</td>
                 <td class='center_form'>
-                    <form method='post' action ='$pUsersEdit'> 
-                        <button name='edit' class='btn btn-outline-primary' type='submit' value='{$row['id']}'>Robimy możliwość aktywacji konta?</button>
+                    <form method='post' action ='$pUsersActivate'> 
+                        <button name='activate' class='btn btn-outline-primary' type='submit' value='{$row['id']}'>Aktywuj</button>
                     </form>
                 </td>
             </tr>";

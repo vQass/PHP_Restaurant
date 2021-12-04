@@ -1,6 +1,5 @@
 <?php
 
-// na jutro: walidacja edycji, usuwanie uzytkownika, jak walidacja sie uda unset zmienne sesyjne, dodawanie do bazy, walidacje dodac przez require once, zrobic tam is valid is invalid 
 session_start();
 require_once("paths.php");
 require_once("$pSharedFunctions");
@@ -213,14 +212,18 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
         <label for="inputPhoneNumber" class="form-label">Numer telefonu</label>
         <input type="text" maxlength="9" class="form-control <?php echo $vePhone ?>" id="inputPhoneNumber" name="phone" placeholder="123654956" value=<?php echo "'$phone'" ?>>
       </div>
-
-      <label for="inputPermission" class="form-label">Uprawnienia</label>
-      <select class="form-select" id="inputPermission" name="permission">
-        <option value='user' <?php echo $user ?>>Użytkownik</option>
-        <option value='employee' <?php echo $employee ?>>Pracownik</option>
-        <option value='admin' <?php echo $admin ?>>Administator</option>
-      </select><br />
-
+      <?php
+      if ($_SESSION['user_id'] != $id) { // nie wyświetla jeśli id osoby edytowanej jest równe id osoby edytującej
+        echo "
+      <label for='inputPermission' class='form-label'>Uprawnienia</label>
+      <select class='form-select' id='inputPermission' name='permission'>
+        <option value='user' $user >Użytkownik</option>
+        <option value='employee' $employee >Pracownik</option>
+        <option value='admin' $admin >Administator</option>
+      </select>";
+      }
+      ?>
+      <br />
       <div class="col-12">
         <button class="btn btn-primary" type="submit">Zatwierdź</button>
       </div>
