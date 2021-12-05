@@ -102,7 +102,6 @@ require_once("$pIndexLogic");
                 <li> Pizza 8</li>
                 <li> Pizza 9</li>
                 <li> Pizza 10</li>
-
             </ul>
         </div>
 
@@ -127,6 +126,16 @@ require_once("$pIndexLogic");
                         </div>
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1095.329220266166!2d18.678521863440235!3d50.28589039078352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471131030b062f91%3A0x3e9d8c258fb6d04c!2sDom%20Studencki%20Elektron!5e0!3m2!1spl!2spl!4v1638126762822!5m2!1spl!2spl" width=100% height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
+        </div>
+
+        <div class="footer">
+            <ul>
+                <li><a href="https://www.facebook.com/slawomirmentzen" target="_blank"><img src="facebook.png" alt="Facebook" id="fb"></a></li>
+                <li><a href="https://twitter.com/SlawomirMentzen?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank"><img src="twitter.png" alt="Twitter" id="tw"></a></li>
+                <li><a href="https://www.youtube.com/watch?v=njqEBOntE9I" target="_blank"><img src="youtube.png" alt="Youtube" id="yt"></a></li>
+                <li><a href="https://www.instagram.com/slawomirmentzen/?hl=pl" target="_blank"><img src="instagram.png" alt="Instagram" id="insta"></a></li>
+            </ul>
+            <h5 style="text-align: center">Copyright © 2021</h5>
         </div>
     </div>
 

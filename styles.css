@@ -13,6 +13,14 @@ nav {
   background-color: RGB(38, 40, 55);
 }
 
+.mainPage,
+.Contact,
+.google {
+  padding: 1px;
+  background-color: black;
+  color: white;
+}
+
 #backgroundImg {
   height: 92vh;
   background-image: url("pizzaBackground.jpg");
@@ -198,6 +206,31 @@ nav img {
   width: 100%;
   padding: 10px;
   border-top: 5px solid RGB(243, 111, 39);
+  border-bottom: 5px solid RGB(243, 111, 39);
+}
+
+.footer ul {
+  margin-top: 3vh;
+  text-align: center;
+  margin-bottom: 5vh;
+}
+
+.footer ul li {
+  display: inline-block;
+  padding-left: 10vh;
+  padding-right: 10vh;
+}
+
+.footer img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: RGB(243, 111, 39);
+}
+
+#fb,
+#tw {
+  padding: 10px;
 }
 
 .logomen {
@@ -392,9 +425,9 @@ nav img {
 }
 
 .car {
-  width: 100%;
+  width: 750px;
   z-index: 2;
-  animation: car 5s linear infinite;
+  animation: car 2s linear infinite;
 }
 
 .car img {
@@ -420,6 +453,7 @@ nav img {
   position: relative;
   top: 43px;
   left: -368px;
+  z-index: 3;
 }
 
 .front-wheel {
@@ -429,6 +463,7 @@ nav img {
   position: relative;
   top: 43px;
   left: -200px;
+  z-index: 4;
 }
 
 @-moz-keyframes wheel {
