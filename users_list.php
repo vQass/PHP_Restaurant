@@ -30,7 +30,7 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
       $_SESSION['general_message'] .= ErrorMessageGenerator($e);
     }
     echo "<h1 style='text-align: center;'>Użytkownicy aktywni</h1>";
-    echo '<table class="center table table-striped table-hover" style="width: 80%; margin-left:auto; margin-right:auto">
+    echo '<table class="center table " style="width: 80%; margin-left:auto; margin-right:auto">
             <tr>
                 <th>ID</th>
                 <th>Imię</th>
@@ -98,8 +98,8 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
       $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania do bazy danych");
       $_SESSION['general_message'] .= ErrorMessageGenerator($e);
     }
-    echo "<h1 style='text-align: center;'>Użytkownicy nieaktywni</h1>";
-    echo '<table class="center table table-striped table-hover" style="width: 80%; margin-left:auto; margin-right:auto">
+    echo "<h1 style='text-align: center;'>Użytkownicy nieaktywni</h1>"; //<table class="center table table-striped table-hover"
+    echo '<table class="center table" style="width: 80%; margin-left:auto; margin-right:auto"> 
             <tr>
                 <th>ID</th>
                 <th>Imię</th>
@@ -164,7 +164,17 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
 <head>
   <title>Lista uzytkownikow</title>
   <style>
+    body {
+      background-color: black !important;
+      color: white !important;
+    }
+
+    table tr td {
+      color: white !important;
+    }
+
     .center {
+      color: white !important;
       text-align: center;
     }
 

@@ -21,6 +21,11 @@ nav {
   color: white;
 }
 
+#copyright {
+  text-align: center;
+  background-color: black;
+}
+
 #backgroundImg {
   height: 92vh;
   background-image: url("pizzaBackground.jpg");
@@ -209,10 +214,15 @@ nav img {
   border-bottom: 5px solid RGB(243, 111, 39);
 }
 
+.footer {
+  background-color: black;
+  color: white;
+}
+
 .footer ul {
-  margin-top: 3vh;
+  background-color: black;
+  padding-top: 3vh;
   text-align: center;
-  margin-bottom: 5vh;
 }
 
 .footer ul li {
@@ -483,4 +493,60 @@ nav img {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+.adminMain {
+  width: 45vw;
+  height: 15vh;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+#adminBody {
+  background-image: url("pizzaBackground.jpg");
+}
+
+.adminMain a {
+  color: white;
+  text-decoration: none !important;
+}
+
+.adminMain div {
+  opacity: 0.8;
+  text-decoration: none !important;
+  color: white;
+  margin-top: 10vh;
+}
+
+.adminMain div:hover {
+  text-decoration: none !important;
+  color: white;
+  animation: colours 2s infinite;
+}
+
+@keyframes colours {
+  from {
+    border: RGB(243, 111, 39) solid 5px;
+    color: white;
+  }
+
+  to {
+    opacity: 1.0;
+    border: white solid 5px;
+    color: yellow;
+  }
+}
+
+.adminPanel {
+  line-height: 32px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 15vh;
+  font-size: 30px;
+  border-radius: 4px;
+  border: 1px solid black;
+  border-style: solid;
+  background-color: RGB(243, 111, 39);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
 }

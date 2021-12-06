@@ -25,7 +25,7 @@ if (!isset($_SESSION['user_permission']) || $_SESSION['user_permission'] != "adm
 
 </head>
 
-<body>
+<body id="adminBody">
 
   <div class="Sidebar">
     <nav>
@@ -45,6 +45,26 @@ if (!isset($_SESSION['user_permission']) || $_SESSION['user_permission'] != "adm
         </a>
       </ul>
     </nav>
+
+    <div class="adminMain">
+
+      <a href="index.php">
+        <div class="adminPanel">
+          Strona główna
+        </div>
+      </a>
+      <a href="menu.php">
+        <div class="adminPanel">
+          Menu
+        </div>
+      </a>
+      <a href="users_list.php">
+        <div class="adminPanel">
+          Lista użytkowników
+        </div>
+      </a>
+    </div>
+
   </div>
 </body>
 

@@ -135,7 +135,7 @@ require_once("$pIndexLogic");
                 <li><a href="https://www.youtube.com/watch?v=njqEBOntE9I" target="_blank"><img src="youtube.png" alt="Youtube" id="yt"></a></li>
                 <li><a href="https://www.instagram.com/slawomirmentzen/?hl=pl" target="_blank"><img src="instagram.png" alt="Instagram" id="insta"></a></li>
             </ul>
-            <h5 style="text-align: center">Copyright © 2021</h5>
+            <div id="copyright">Copyright © 2021</div>
         </div>
     </div>
 
