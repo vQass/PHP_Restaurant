@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 06 Gru 2021, 14:21
+-- Czas generowania: 09 Gru 2021, 17:07
 -- Wersja serwera: 10.4.21-MariaDB
 -- Wersja PHP: 8.0.12
 
@@ -20,42 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Baza danych: `restauracja`
 --
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `menu`
---
-
-CREATE TABLE `menu` (
-  `id` int(11) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `price` double(6,2) NOT NULL,
-  `photo` varchar(40) NOT NULL,
-  `description` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Zrzut danych tabeli `menu`
---
-
-INSERT INTO `menu` (`id`, `name`, `price`, `photo`, `description`) VALUES
-(1, 'margherita', 30.99, 'mar.jpg', 'Składniki:\r\n-ser\r\n-ser\r\n-ser\r\n-ser');
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `orders`
---
-
-CREATE TABLE `orders` (
-  `idOrders` int(11) NOT NULL,
-  `idUser` int(11) NOT NULL,
-  `idProduct` int(11) NOT NULL,
-  `price` double(6,2) NOT NULL,
-  `status` enum('W trakcie realizcaji','zrealizowano','anulowano','') NOT NULL,
-  `number` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -80,17 +44,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `permission`, `city`, `address`, `phone`, `isActive`, `password`, `email`) VALUES
-(15, 'Patryk', 'user', 'Gliwice', 'Polna 25/3', '123', 1, 'pass', 'Przyklad@gmail.com');
+(16, 'Jan', 'user', 'Katowice', 'Mokra 5', '156485555', 1, '7c4a8d09ca3762af61e59520943dc26494f8941b', 'J@gmail.com'),
+(17, 'admin', 'admin', NULL, NULL, NULL, 1, '9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684', 'user@test.pl');
 
 --
 -- Indeksy dla zrzutów tabel
 --
-
---
--- Indeksy dla tabeli `menu`
---
-ALTER TABLE `menu`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeksy dla tabeli `users`
@@ -103,16 +62,10 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT dla tabeli `menu`
---
-ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
