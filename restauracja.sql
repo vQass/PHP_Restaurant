@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 09 Gru 2021, 17:07
+-- Czas generowania: 09 Gru 2021, 17:12
 -- Wersja serwera: 10.4.21-MariaDB
 -- Wersja PHP: 8.0.12
 
@@ -20,6 +20,47 @@ SET time_zone = "+00:00";
 --
 -- Baza danych: `restauracja`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `menu`
+--
+
+CREATE TABLE `menu` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `category` enum('pizza','beer','','') NOT NULL,
+  `price` double(6,2) NOT NULL,
+  `photo` varchar(40) NOT NULL,
+  `description` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `menu`
+--
+
+INSERT INTO `menu` (`id`, `name`, `category`, `price`, `photo`, `description`) VALUES
+(1, 'margherita', 'pizza', 30.99, 'pizzaBackground.jpg', 'Składniki:\r\n-ser\r\n-ser\r\n-ser\r\n-ser'),
+(2, 'margherita', 'pizza', 25.58, 'mar.jpg', 'Wyśmienita pizza.\r\nPolecam!\r\nBardzo!'),
+(3, 'Piwo wolnościowe', 'beer', 7.99, 'piwo_wolnosciowe.png', 'Bardzo dobre'),
+(4, 'Polska wolność', 'beer', 7.99, 'polska_wolnosc.png', 'Bardzo dobre!'),
+(5, 'Paszport Mentzena', 'beer', 9.99, 'paszport_mentzena.png', 'Wyśmienite');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `orders`
+--
+
+CREATE TABLE `orders` (
+  `idOrders` int(11) NOT NULL,
+  `idUser` int(11) NOT NULL,
+  `idProduct` int(11) NOT NULL,
+  `price` double(6,2) NOT NULL,
+  `status` enum('W trakcie realizcaji','zrealizowano','anulowano','') NOT NULL,
+  `number` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -52,6 +93,12 @@ INSERT INTO `users` (`id`, `name`, `permission`, `city`, `address`, `phone`, `is
 --
 
 --
+-- Indeksy dla tabeli `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeksy dla tabeli `users`
 --
 ALTER TABLE `users`
@@ -60,6 +107,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT dla zrzuconych tabel
 --
+
+--
+-- AUTO_INCREMENT dla tabeli `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
