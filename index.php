@@ -5,30 +5,30 @@ require_once("paths.php");
 require_once("$pSharedFunctions"); // w finalnej wersji można usunąć, na razie do testów alertów  
 require_once("$pIndexLogic");
 
-$dbConnected = true;
-try {
-    require_once "$pDbConnection";
-  } catch (Exception $e) {
-    $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas łączenia z bazą danych");
-    $_SESSION['general_message'] .= ErrorMessageGenerator($e);
-    $dbConnected = false;
-  }
+// $dbConnected = true;
+// try {
+     require_once "$pDbConnection";
+//   } catch (Exception $e) {
+//     $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas łączenia z bazą danych");
+//     $_SESSION['general_message'] .= ErrorMessageGenerator($e);
+//     $dbConnected = false;
+//   }
 
-echo "<div class='absolute'>";
-if (isset($_SESSION['general_message'])) {
-    echo $_SESSION['general_message'];
-    unset($_SESSION['general_message']);
-}
-echo "</div>";
-if ($dbConnected) {
-    try {
-        $menuQuery = $dbh->query('SELECT * FROM menu');
-      } catch (Exception $e) {
-        $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania do bazy danych");
-        $_SESSION['general_message'] .= ErrorMessageGenerator($e);
-      }
-    $menu = $menuQuery->fetchAll();
-}
+// echo "<div class='absolute'>";
+// if (isset($_SESSION['general_message'])) {
+//     echo $_SESSION['general_message'];
+//     unset($_SESSION['general_message']);
+// }
+// echo "</div>";
+// if ($dbConnected) {
+//     try {
+    $tmpQuery = $dbh->query('SELECT category FROM menu GROUP BY category HAVING count(*) >= 1');
+//       } catch (Exception $e) {
+//         $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania do bazy danych");
+//         $_SESSION['general_message'] .= ErrorMessageGenerator($e);
+//       }
+     $tmp = $tmpQuery->fetchAll();
+// }
 ?>
 
 <html>
@@ -96,32 +96,31 @@ if ($dbConnected) {
         <h1 id="menu">Menu:</h1>
         <div class="MenuPage">
         <?php 
-        $zmienna=1;
-        echo "<ul style='list-style-type: none;'>";
-        foreach($menu as $temp) {
-            //echo "<ul style='list-style-type: none;'>";
-            // if($temp['category'] == "beer" && $zmienna==1) {
-            //     echo "<br><br><br><br>";
-            //     echo "<h3>Piwa:</h3>";
-            //     $zmienna=0;
-            // }
-            echo "<li style='float: left;padding: 10px;'>";
-            echo '<div class="ProductContainer">';
-            echo "<img class='ProductImage' src='{$temp['photo']}'>";
-            echo '<div class="ProductBG"></div>';
-            echo "<input type='submit' class='ProductButton' value='+' name='{$temp['id']}'>";
-            echo "<div class='ProductPrice'> {$temp['price']} </div>";
-            echo "<div class='ProductName'> {$temp['name']}</div>";
-            echo "<div class='ProductInfoButton'>i";
-            echo "<div class='ProductInfo'>";
-            echo nl2br("{$temp['description']}");
-            echo "</div>";
-            echo "</div>";
-            echo "</li >";
-            //echo "</ul>";
+        foreach($tmp as $kat){
+            $menuQuery = $dbh->prepare('SELECT * FROM menu WHERE category = :kategoria');
+	        $menuQuery->bindValue(':kategoria', $kat['category'], PDO::PARAM_STR);
+	        $menuQuery->execute();
+            $menu = $menuQuery->fetchAll();
+            echo "<h3>{$kat['category']}:</h3>";
+            echo "<ul style='list-style-type: none'>";
+            foreach($menu as $temp) {
+                echo "<li style='float: left;padding: 10px;'>";
+                echo '<div class="ProductContainer">';
+                echo "<img class='ProductImage' src='Menu/{$temp['photo']}'>";
+                echo '<div class="ProductBG"></div>';
+                echo "<input type='submit' class='ProductButton' value='+' name='{$temp['id']}'>";
+                echo "<div class='ProductPrice'> {$temp['price']} </div>";
+                echo "<div class='ProductName'> {$temp['name']}</div>";
+                echo "<div class='ProductInfoButton'>i";
+                echo "<div class='ProductInfo'>";
+                echo nl2br("{$temp['description']}");
+                echo "</div>";
+                echo "</div>";
+                echo "</li >";
             }
             echo "</ul>";
-            ?> 
+        }
+        ?> 
 
         </div>
 
