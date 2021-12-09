@@ -69,40 +69,23 @@ require_once("$pIndexLogic");
             <!-- <img src="pizzaBackground.jpg" alt="Logo" width="100%"> -->
         </div>
 
-        <div class="MainPage">
-            <h1 id="menu">Menu:</h1>
-            <ul>
-                <li> Pizza 1</li>
-                <li> Pizza 2</li>
-                <li> Pizza 3</li>
-                <li> Pizza 4</li>
-                <li> Pizza 5</li>
-                <li> Pizza 6</li>
-                <li> Pizza 7</li>
-                <li> Pizza 8</li>
-                <li> Pizza 9</li>
-                <li> Pizza 10</li>
-                <li> Pizza 1</li>
-                <li> Pizza 2</li>
-                <li> Pizza 3</li>
-                <li> Pizza 4</li>
-                <li> Pizza 5</li>
-                <li> Pizza 6</li>
-                <li> Pizza 7</li>
-                <li> Pizza 8</li>
-                <li> Pizza 9</li>
-                <li> Pizza 10</li>
-                <li> Pizza 1</li>
-                <li> Pizza 2</li>
-                <li> Pizza 3</li>
-                <li> Pizza 4</li>
-                <li> Pizza 5</li>
-                <li> Pizza 6</li>
-                <li> Pizza 7</li>
-                <li> Pizza 8</li>
-                <li> Pizza 9</li>
-                <li> Pizza 10</li>
-            </ul>
+        <h1 id="Menu">Menu:</h1>
+        <div class="MenuPage">
+            
+            <div class="ProductContainer">
+                <img class="ProductImage" src="pizzaBackground.jpg">
+                <div class="ProductBG"></div>
+                <!--<form>-->
+                    <input type="submit" class="ProductButton" value="+">
+                <!--</form>-->
+                <div class="ProductPrice">CENA</div>
+                <div class="ProductName">name</div>
+                <div class="ProductInfoButton">i
+                    <div class="ProductInfo">Grube ciasto z 5 krotną ilością sera w zestawie sos piwny</div>
+                </div>
+                
+            </div>
+
         </div>
 
 
