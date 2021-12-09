@@ -2,9 +2,33 @@
 
 session_start();
 require_once("paths.php");
-// require_once("$pDbConnection");
 require_once("$pSharedFunctions"); // w finalnej wersji można usunąć, na razie do testów alertów  
 require_once("$pIndexLogic");
+
+$dbConnected = true;
+try {
+    require_once "$pDbConnection";
+  } catch (Exception $e) {
+    $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas łączenia z bazą danych");
+    $_SESSION['general_message'] .= ErrorMessageGenerator($e);
+    $dbConnected = false;
+  }
+
+echo "<div class='absolute'>";
+if (isset($_SESSION['general_message'])) {
+    echo $_SESSION['general_message'];
+    unset($_SESSION['general_message']);
+}
+echo "</div>";
+if ($dbConnected) {
+    try {
+        $menuQuery = $dbh->query('SELECT * FROM menu');
+      } catch (Exception $e) {
+        $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania do bazy danych");
+        $_SESSION['general_message'] .= ErrorMessageGenerator($e);
+      }
+    $menu = $menuQuery->fetchAll();
+}
 ?>
 
 <html>
@@ -14,7 +38,7 @@ require_once("$pIndexLogic");
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-
+    <title>Restauracja u Mentzena</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
@@ -69,22 +93,35 @@ require_once("$pIndexLogic");
             <!-- <img src="pizzaBackground.jpg" alt="Logo" width="100%"> -->
         </div>
 
-        <h1 id="Menu">Menu:</h1>
+        <h1 id="menu">Menu:</h1>
         <div class="MenuPage">
-            
-            <div class="ProductContainer">
-                <img class="ProductImage" src="pizzaBackground.jpg">
-                <div class="ProductBG"></div>
-                <!--<form>-->
-                    <input type="submit" class="ProductButton" value="+">
-                <!--</form>-->
-                <div class="ProductPrice">CENA</div>
-                <div class="ProductName">name</div>
-                <div class="ProductInfoButton">i
-                    <div class="ProductInfo">Grube ciasto z 5 krotną ilością sera w zestawie sos piwny</div>
-                </div>
-                
-            </div>
+        <?php 
+        $zmienna=1;
+        echo "<ul style='list-style-type: none;'>";
+        foreach($menu as $temp) {
+            //echo "<ul style='list-style-type: none;'>";
+            // if($temp['category'] == "beer" && $zmienna==1) {
+            //     echo "<br><br><br><br>";
+            //     echo "<h3>Piwa:</h3>";
+            //     $zmienna=0;
+            // }
+            echo "<li style='float: left;padding: 10px;'>";
+            echo '<div class="ProductContainer">';
+            echo "<img class='ProductImage' src='{$temp['photo']}'>";
+            echo '<div class="ProductBG"></div>';
+            echo "<input type='submit' class='ProductButton' value='+' name='{$temp['id']}'>";
+            echo "<div class='ProductPrice'> {$temp['price']} </div>";
+            echo "<div class='ProductName'> {$temp['name']}</div>";
+            echo "<div class='ProductInfoButton'>i";
+            echo "<div class='ProductInfo'>";
+            echo nl2br("{$temp['description']}");
+            echo "</div>";
+            echo "</div>";
+            echo "</li >";
+            //echo "</ul>";
+            }
+            echo "</ul>";
+            ?> 
 
         </div>
 
