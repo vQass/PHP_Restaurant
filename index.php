@@ -96,6 +96,7 @@ require_once("$pIndexLogic");
         <h1 id="menu">Menu:</h1>
         <div class="MenuPage">
         <?php 
+        // chyba git nie mam innego pomysłu jak to zrobić
         foreach($tmp as $kat){
             $menuQuery = $dbh->prepare('SELECT * FROM menu WHERE category = :kategoria');
 	        $menuQuery->bindValue(':kategoria', $kat['category'], PDO::PARAM_STR);
@@ -109,7 +110,9 @@ require_once("$pIndexLogic");
                 echo "<img class='ProductImage' src='Menu/{$temp['photo']}'>";
                 echo '<div class="ProductBG"></div>';
                 echo "<input type='submit' class='ProductButton' value='+' name='{$temp['id']}'>";
-                echo "<div class='ProductPrice'> {$temp['price']} </div>";
+                echo "<div class='ProductPrice'> ";
+                echo number_format($temp['price'],2);
+                echo "</div>";
                 echo "<div class='ProductName'> {$temp['name']}</div>";
                 echo "<div class='ProductInfoButton'>i";
                 echo "<div class='ProductInfo'>";
