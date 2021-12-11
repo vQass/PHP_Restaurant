@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("paths.php");
+require_once("paths.php"); //test
 if (!isset($_SESSION['user_permission']) || $_SESSION['user_permission'] != "admin") {
   header("Location: $pHome");
   exit();
