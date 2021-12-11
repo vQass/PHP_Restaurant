@@ -5,13 +5,137 @@
   font-family: "Poppins", sans-serif;
 }
 
-nav {
+/* nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
   min-height: 8vh;
   background-color: RGB(38, 40, 55);
 }
+*/
+
+/* TESTOWY NAVBAR - BOOTSTRAP */
+ul li a {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navbar {
+  position: fixed !important;
+  top: 0px !important;
+  width: 100% !important;
+  z-index: 100 !important;
+  white-space: nowrap !important;
+  background: RGB(38, 40, 55);
+  height: 0rem;
+  min-height: 100px;
+}
+
+.navbar .navbar-brand a {
+  padding: 1rem 0;
+  display: block;
+  text-decoration: none;
+}
+
+/* Nazwa logo */
+@media screen and (min-width: 1000px) {
+  .navbar-brand {
+    font-size: 50px !important;
+  }
+}
+
+@media screen and (min-width: 1650px) {
+
+  #logoImg {
+    width: 130px !important;
+  }
+}
+
+@media screen and (max-width: 1900px) {
+  .car {
+    display: none;
+  }
+}
+
+.navbar-toggler {
+  background: RGB(243, 111, 39);
+  border: none;
+  padding: 10px 6px;
+  outline: none;
+}
+
+.navbar-toggler span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border: 1px;
+  background: RGB(243, 111, 39);
+}
+
+.navbar-toggler span+span {
+  margin-top: 4px;
+}
+
+.navbar-toggler span+span+span {
+  margin-top: 4px;
+}
+
+.navbar-expand-xxl .navbar-nav .nav-link {
+  padding: 2rem 1.2rem;
+  font-size: 1.4rem;
+  position: relative;
+}
+
+.nav-link {
+  cursor: pointer;
+}
+
+.nav-item a:hover {
+  transition: 0.5s;
+  transform: translate(0%, -15%);
+  animation: mymove 1s;
+  color: RGB(243, 111, 39);
+}
+
+.navbar-nav button {
+  padding: 1.2rem 0;
+}
+
+.navbar-nav .btn {
+  background-color: RGB(243, 111, 39);
+  color: white;
+  border-radius: 0;
+  padding: 1rem 1.5rem;
+  font-size: 1.2rem;
+  margin-top: -10px;
+}
+
+.navbar-nav .btn:hover {
+  background-color: red;
+}
+
+.navbar-nav {
+  font-size: 1.5rem;
+}
+
+.navbar {
+  background-color: RGB(38, 40, 55);
+}
+
+#navbarSupportedContent {
+  background-color: RGB(38, 40, 55);
+  text-align: center !important;
+}
+
+/* RESPONSYWNOSC XD */
+
+#logoImg {
+  margin-left: 1vw;
+  width: 60px;
+}
+
+/* KONIEC RESPONSYWNOSCI XD*/
+/* KONIEC TESTOWY NAVBAR - BOOTSTRAP */
 
 .Contact,
 .google {
@@ -26,23 +150,22 @@ nav {
 }
 
 #backgroundImg {
-  height: 92vh;
-  background-image: url("pizzaBackground.jpg");
+  background-image: url("/images/background/pizzaBackground.jpg");
   background-color: #cccccc;
-  height: 92vh;
+  height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.nav-links {
+/* .nav-links {
   display: flex;
   background-color: RGB(38, 40, 55);
   justify-content: space-around;
   width: 40%;
-}
+} */
 
-.nav-links li {
+/* .nav-links li {
   cursor: pointer;
   padding: 5px;
   color: rgb(225, 225, 225);
@@ -51,16 +174,16 @@ nav {
   font-weight: bold;
   font-size: 14px;
   list-style: none;
-}
+} */
 
 @font-face {
   font-family: 'pizza';
-  src: url('pizza.eot?45830896');
-  src: url('pizza.eot?45830896#iefix') format('embedded-opentype'),
-    url('pizza.woff2?45830896') format('woff2'),
-    url('pizza.woff?45830896') format('woff'),
-    url('pizza.ttf?45830896') format('truetype'),
-    url('pizza.svg?45830896#pizza') format('svg');
+  src: url('pizzasFont/pizza.eot?45830896');
+  src: url('pizzasFont/pizza.eot?45830896#iefix') format('embedded-opentype'),
+    url('pizzasFont/pizza.woff2?45830896') format('woff2'),
+    url('pizzasFont/pizza.woff?45830896') format('woff'),
+    url('pizzasFont/pizza.ttf?45830896') format('truetype'),
+    url('pizzasFont/pizza.svg?45830896#pizza') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -90,13 +213,6 @@ input[type="password"] {
   animation: mymove 1s;
   background-color: RGB(28, 30, 45);
   color: RGB(243, 111, 39);
-}
-
-.Sidebar {
-  z-index: 9989;
-  position: sticky;
-  top: 0;
-  width: 100%;
 }
 
 .popup_container {
@@ -190,21 +306,7 @@ input[type="password"] {
   opacity: 0.9;
 }
 
-#backgroundImg {
-  height: 92vh;
-  background-image: url("pizzaBackground.jpg");
-  background-color: #cccccc;
-  height: 92vh;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 /* moje, poukładać :)*/
-
-nav img {
-  margin-left: -100px;
-}
 
 #google {
   width: 100%;
@@ -243,11 +345,8 @@ nav img {
 }
 
 .logomen {
-  position: sticky;
-  top: 100%;
-  margin-right: -550px;
-  /* Fuszerka */
-  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  font-size: 44px;
   letter-spacing: 2px;
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
@@ -433,10 +532,14 @@ nav img {
   }
 }
 
+body {
+  overflow-x: hidden !important;
+}
+
 .car {
-  width: 750px;
+  width: 100%;
   z-index: 2;
-  animation: car 2s linear infinite;
+  animation: car 5s linear infinite;
 }
 
 .car img {
@@ -499,11 +602,13 @@ nav img {
   height: 15vh;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 20vh;
 
 }
 
-#adminBody {
-  background-image: url("pizzaBackground.jpg");
+.adminNav {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .adminMain a {
@@ -584,7 +689,7 @@ nav img {
   user-select: none;
   outline: none;
   color: #fff;
-  
+
 }
 
 .ProductButton:hover {
@@ -602,7 +707,7 @@ nav img {
 }
 
 
-.ProductBG{
+.ProductBG {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -640,23 +745,23 @@ nav img {
   background-color: RGB(223, 91, 19);
 }
 
-.ProductContainer:hover > .ProductButton {
+.ProductContainer:hover>.ProductButton {
   display: block;
 }
 
-.ProductContainer:hover > .ProductBG {
+.ProductContainer:hover>.ProductBG {
   opacity: 0.2;
 }
 
-.ProductContainer:hover > .ProductName {
+.ProductContainer:hover>.ProductName {
   display: block;
 }
 
-.ProductContainer:hover > .ProductInfoButton {
+.ProductContainer:hover>.ProductInfoButton {
   display: block;
 }
 
-.ProductImage{
+.ProductImage {
   position: absolute;
   width: 250px;
   height: 250px;
@@ -679,17 +784,17 @@ nav img {
 .ProductInfo::before {
   position: absolute;
   content: "";
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  
+
   border-bottom: 10px solid RGB(243, 111, 39);
   top: -8px;
   right: 35px;
 }
 
-.ProductInfoButton:hover > .ProductInfo {
+.ProductInfoButton:hover>.ProductInfo {
   display: block;
 }
 
@@ -705,7 +810,7 @@ nav img {
   border-top-right-radius: 5px;
 }
 
-.ProductContainer:hover > .ProductPrice {
+.ProductContainer:hover>.ProductPrice {
   display: block;
 }
 

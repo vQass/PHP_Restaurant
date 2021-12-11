@@ -10,6 +10,8 @@ if (!isset($_SESSION['user_permission']) || $_SESSION['user_permission'] != "adm
 <html lang="pl">
 
 <head>
+  <title>Panel administatora</title>
+  <link href="/images/dot_ico/admin.ico" rel="icon" type="image/x-icon" />
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,45 +27,33 @@ if (!isset($_SESSION['user_permission']) || $_SESSION['user_permission'] != "adm
 
 </head>
 
-<body id="adminBody">
+<body id="backgroundImg">
 
-  <div class="Sidebar">
-    <nav>
-      <img src="logo.jpg" alt="Logo" width="140px" height="98px">
-      <div class="logomen">
-        <h1>Restau<span class="fast-flicker">racja</span> u <span class="flicker">Mentzena</span></h1>
-      </div>
-      <ul class="nav-links">
-        <a href="<?php echo $pHome ?>">
-          <li id="kontakt_button">Strona główna</li>
-        </a>
-        <a href="">
-          <li id="menu_button">Menu</li>
-        </a>
-        <a href="<?php echo $pUsersList ?>">
-          <li id="kontakt_button">Lista użytkowników</li>
-        </a>
-      </ul>
-    </nav>
-
-    <div class="adminMain">
-
-      <a href="index.php">
-        <div class="adminPanel">
-          Strona główna
-        </div>
-      </a>
-      <a href="menu.php">
-        <div class="adminPanel">
-          Menu
-        </div>
-      </a>
-      <a href="users_list.php">
-        <div class="adminPanel">
-          Lista użytkowników
-        </div>
-      </a>
+  <nav class="navbar navbar-expand-xxl navbar-dark">
+    <div class="adminNav">
+      <a class="navbar-brand"><img id="logoImg" src="images/logo.jpg" alt="Logo"></a>
+      <a class="navbar-brand logomen">Restau<span class="fast-flicker">racja</span> u <span class="flicker">Mentzena</span></a>
     </div>
+  </nav>
+
+  <div class="adminMain">
+
+    <a href="index.php">
+      <div class="adminPanel">
+        Strona główna
+      </div>
+    </a>
+    <a href="menu.php">
+      <div class="adminPanel">
+        Menu
+      </div>
+    </a>
+    <a href="users_list.php">
+      <div class="adminPanel">
+        Lista użytkowników
+      </div>
+    </a>
+  </div>
 
   </div>
 </body>

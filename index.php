@@ -5,35 +5,36 @@ require_once("paths.php");
 require_once("$pSharedFunctions"); // w finalnej wersji można usunąć, na razie do testów alertów  
 require_once("$pIndexLogic");
 
-$dbConnected = true;
-try {
-    require_once "$pDbConnection";
-  } catch (Exception $e) {
-    $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas łączenia z bazą danych");
-    $_SESSION['general_message'] .= ErrorMessageGenerator($e);
-    $dbConnected = false;
-  }
+// $dbConnected = true;
+// try {
+require_once "$pDbConnection";
+//   } catch (Exception $e) {
+//     $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas łączenia z bazą danych");
+//     $_SESSION['general_message'] .= ErrorMessageGenerator($e);
+//     $dbConnected = false;
+//   }
 
-echo "<div class='absolute'>";
-if (isset($_SESSION['general_message'])) {
-    echo $_SESSION['general_message'];
-    unset($_SESSION['general_message']);
-}
-echo "</div>";
-if ($dbConnected) {
-    try {
-        $menuQuery = $dbh->query('SELECT * FROM menu');
-      } catch (Exception $e) {
-        $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania do bazy danych");
-        $_SESSION['general_message'] .= ErrorMessageGenerator($e);
-      }
-    $menu = $menuQuery->fetchAll();
-}
+// echo "<div class='absolute'>";
+// if (isset($_SESSION['general_message'])) {
+//     echo $_SESSION['general_message'];
+//     unset($_SESSION['general_message']);
+// }
+// echo "</div>";
+// if ($dbConnected) {
+//     try {
+$menuQuery = $dbh->query('SELECT * FROM menu');
+//       } catch (Exception $e) {
+//         $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania do bazy danych");
+//         $_SESSION['general_message'] .= ErrorMessageGenerator($e);
+//       }
+$menu = $menuQuery->fetchAll();
+// }
 ?>
 
 <html>
 
 <head>
+    <link href="/images/dot_ico/pizza.ico" rel="icon" type="image/x-icon" />
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,28 +60,47 @@ if ($dbConnected) {
     ?>
 
     <div class="Main">
-        <div class="Sidebar">
-            <nav>
-                <img src="logo.jpg" alt="Logo" width="140px" height="98px">
-                <div class="logomen">
-                    <h1>Restau<span class="fast-flicker">racja</span> u <span class="flicker">Mentzena</span></h1>
+        <nav class="navbar navbar-expand-xxl navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.php"><img id="logoImg" src="images/logo.jpg" alt="Logo"></a>
+                <a class="navbar-brand logomen" href="index.php">Restau<span class="fast-flicker">racja</span> u <span class="flicker">Mentzena</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item" onclick="document.body.scrollTop = document.documentElement.scrollTop = 0">
+                            <a class="nav-link active" aria-current="page">Strona główna</a>
+                        </li>
+                        <li class="nav-item" id="menu_button">
+                            <a class="nav-link">Menu</a>
+                        </li>
+                        <li class="nav-item" id="kontakt_button">
+                            <a class="nav-link">Kontakt</a>
+                        </li>
+                        <li class="nav-item" id="singin" style='<?php echo $displaySignIn ?>'>
+                            <a class="nav-link">Logowanie</a>
+                        </li>
+                        <li class="nav-item" id="singup" style='<?php echo $displaySignUp ?>'>
+                            <a class="nav-link">Rejestracja</a>
+                        </li>
+                        <li class="nav-item" id="logout" style='<?php echo $displayLogout ?>'>
+                            <a href="<?php echo $pLogout ?>" class="nav-link">Wyloguj</a>
+                        </li>
+                        <li class="nav-item" id="users_list" style='<?php echo $displayAdminPanel ?>'>
+                            <a href="<?php echo $pAdminPanel ?>" class="nav-link">Panel administratora</a>
+                        </li>
+                    </ul>
+                    <ul style="display: none" class="navbar-nav ml-auto">
+                        <button class="btn"></button>
+                    </ul>
                 </div>
-                <ul class="nav-links">
-                    <li onclick="document.body.scrollTop = document.documentElement.scrollTop = 0">Strona główna</li>
-                    <li id="menu_button">Menu</li>
-                    <li id="kontakt_button">Kontakt</li>
-                    <li id="singin" style='<?php echo $displaySignIn ?>'>Logowanie</li>
-                    <li id="singup" style='<?php echo $displaySignUp ?>'>Rejestracja</li>
-                    <a href="<?php echo $pLogout ?>">
-                        <li id="logout" style='<?php echo $displayLogout ?>'>Wyloguj</li>
-                    </a>
-                    <a href="<?php echo $pAdminPanel ?>">
-                        <li id="users_list" style='<?php echo $displayAdminPanel ?>'>Panel administratora</li> <!-- Tylko dla administratora -->
-                    </a>
+            </div>
+        </nav>
 
-                </ul>
-            </nav>
-        </div>
         <div class="absolute">
             <?php
             if (isset($_SESSION['general_message'])) {
@@ -90,38 +110,37 @@ if ($dbConnected) {
             ?>
         </div>
         <div id="backgroundImg">
-            <!-- <img src="pizzaBackground.jpg" alt="Logo" width="100%"> -->
         </div>
 
         <h1 id="menu">Menu:</h1>
         <div class="MenuPage">
-        <?php 
-        $zmienna=1;
-        echo "<ul style='list-style-type: none;'>";
-        foreach($menu as $temp) {
-            //echo "<ul style='list-style-type: none;'>";
-            // if($temp['category'] == "beer" && $zmienna==1) {
-            //     echo "<br><br><br><br>";
-            //     echo "<h3>Piwa:</h3>";
-            //     $zmienna=0;
-            // }
-            echo "<li style='float: left;padding: 10px;'>";
-            echo '<div class="ProductContainer">';
-            echo "<img class='ProductImage' src='{$temp['photo']}'>";
-            echo '<div class="ProductBG"></div>';
-            echo "<input type='submit' class='ProductButton' value='+' name='{$temp['id']}'>";
-            echo "<div class='ProductPrice'> {$temp['price']} </div>";
-            echo "<div class='ProductName'> {$temp['name']}</div>";
-            echo "<div class='ProductInfoButton'>i";
-            echo "<div class='ProductInfo'>";
-            echo nl2br("{$temp['description']}");
-            echo "</div>";
-            echo "</div>";
-            echo "</li >";
-            //echo "</ul>";
+            <?php
+            $zmienna = 1;
+            echo "<ul style='list-style-type: none;'>";
+            foreach ($menu as $temp) {
+                //echo "<ul style='list-style-type: none;'>";
+                // if($temp['category'] == "beer" && $zmienna==1) {
+                //     echo "<br><br><br><br>";
+                //     echo "<h3>Piwa:</h3>";
+                //     $zmienna=0;
+                // }
+                echo "<li style='float: left;padding: 10px;'>";
+                echo '<div class="ProductContainer">';
+                echo "<img class='ProductImage' src='/images/menu/{$temp['photo']}'>";
+                echo '<div class="ProductBG"></div>';
+                echo "<input type='submit' class='ProductButton' value='+' name='{$temp['id']}'>";
+                echo "<div class='ProductPrice'> {$temp['price']} </div>";
+                echo "<div class='ProductName'> {$temp['name']}</div>";
+                echo "<div class='ProductInfoButton'>i";
+                echo "<div class='ProductInfo'>";
+                echo nl2br("{$temp['description']}");
+                echo "</div>";
+                echo "</div>";
+                echo "</li >";
+                //echo "</ul>";
             }
             echo "</ul>";
-            ?> 
+            ?>
 
         </div>
 
@@ -140,20 +159,21 @@ if ($dbConnected) {
             <p onclick="showDiv()" id="dojazd"> >>> Jak dojechac? *CLICK* <<< </p>
                     <div id="google" style="display:none">
                         <div class="car">
-                            <img src="car.png">
-                            <img src="wheel.png" class="back-wheel">
-                            <img src="wheel.png" class="front-wheel">
+                            <img src="/images/carAnimation/car.png">
+                            <img src="/images/carAnimation/wheel.png" class="back-wheel">
+                            <img src="/images/carAnimation/wheel.png" class="front-wheel">
                         </div>
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1095.329220266166!2d18.678521863440235!3d50.28589039078352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471131030b062f91%3A0x3e9d8c258fb6d04c!2sDom%20Studencki%20Elektron!5e0!3m2!1spl!2spl!4v1638126762822!5m2!1spl!2spl" width=100% height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
         </div>
 
         <div class="footer">
+            <div class="test"></div>
             <ul>
-                <li><a href="https://www.facebook.com/slawomirmentzen" target="_blank"><img src="facebook.png" alt="Facebook" id="fb"></a></li>
-                <li><a href="https://twitter.com/SlawomirMentzen?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank"><img src="twitter.png" alt="Twitter" id="tw"></a></li>
-                <li><a href="https://www.youtube.com/watch?v=njqEBOntE9I" target="_blank"><img src="youtube.png" alt="Youtube" id="yt"></a></li>
-                <li><a href="https://www.instagram.com/slawomirmentzen/?hl=pl" target="_blank"><img src="instagram.png" alt="Instagram" id="insta"></a></li>
+                <li><a href="https://www.facebook.com/slawomirmentzen" target="_blank"><img src="/images/footer/facebook.png" alt="Facebook" id="fb"></a></li>
+                <li><a href="https://twitter.com/SlawomirMentzen?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank"><img src="/images/footer/twitter.png" alt="Twitter" id="tw"></a></li>
+                <li><a href="https://www.youtube.com/watch?v=njqEBOntE9I" target="_blank"><img src="/images/footer/youtube.png" alt="Youtube" id="yt"></a></li>
+                <li><a href="https://www.instagram.com/slawomirmentzen/?hl=pl" target="_blank"><img src="/images/footer/instagram.png" alt="Instagram" id="insta"></a></li>
             </ul>
             <div id="copyright">Copyright © 2021</div>
         </div>

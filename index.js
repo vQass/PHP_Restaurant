@@ -19,24 +19,31 @@ $(document).ready(function () {
         let yOffset = parseInt(-document.getElementsByTagName('nav')[0].clientHeight);
         const element = document.getElementById("menu");
         const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-    
+
         window.scrollTo({
             top: y,
             behavior: 'smooth'
         });
-        
+
     });
 
     $('#kontakt_button').click(function () {
         let yOffset = parseInt(-document.getElementsByTagName('nav')[0].clientHeight);
         const element = document.getElementById("kontakt");
         const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-    
+
         window.scrollTo({
             top: y,
             behavior: 'smooth'
         });
-        
+
+    });
+
+    $(function () {
+        var navMain = $(".collapse");
+        navMain.on("click", "a", null, function () {
+            navMain.collapse('hide');
+        });
     });
 
 });

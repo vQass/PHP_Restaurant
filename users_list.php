@@ -1,3 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Lista uzytkownikow</title>
+  <link href="/images/dot_ico/users.ico" rel="icon" type="image/x-icon" />
+  <style>
+    body {
+      background-color: black !important;
+      color: white !important;
+    }
+
+    table tr td {
+      color: white !important;
+    }
+
+    .center {
+      color: white !important;
+      text-align: center;
+    }
+
+    .center_form {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .absolute {
+      width: 80%;
+      max-width: 800px;
+      position: absolute;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 20px;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
+
 <?php
 @session_start();
 require_once("paths.php");
@@ -29,6 +80,7 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
       $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania do bazy danych");
       $_SESSION['general_message'] .= ErrorMessageGenerator($e);
     }
+    echo "<a href='admin_panel.php' style='text-decoration: none; color: white;'><h3 style='border: 3px dotted white; width: 127px;text-align: center;'> ←Powrót</h3></a>";
     echo "<h1 style='text-align: center;'>Użytkownicy aktywni</h1>";
     echo '<table class="center table " style="width: 80%; margin-left:auto; margin-right:auto">
             <tr>
@@ -159,51 +211,3 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
   header("Location: $pHome");
 }
 ?>
-<html>
-
-<head>
-  <title>Lista uzytkownikow</title>
-  <style>
-    body {
-      background-color: black !important;
-      color: white !important;
-    }
-
-    table tr td {
-      color: white !important;
-    }
-
-    .center {
-      color: white !important;
-      text-align: center;
-    }
-
-    .center_form {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-    }
-
-    .absolute {
-      width: 80%;
-      max-width: 800px;
-      position: absolute;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 20px;
-      left: 0;
-      right: 0;
-      text-align: center;
-    }
-  </style>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-</head>
-
-<body>
-
-</body>
-
-</html>
