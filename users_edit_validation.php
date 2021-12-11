@@ -15,7 +15,6 @@ if (isset($_POST['email'])) {
   $permissionQuery = "";
 
 
-  // zamiast e_email można robić general_message ale może być ostry spam na ekranie przez to
 
   $id = $_SESSION['eu_idUsera'];
 
@@ -24,7 +23,6 @@ if (isset($_POST['email'])) {
   if ($password != "") {
     if ((strlen($password) < 2) || (strlen($password) > 20)) {
       $data_valid = false;
-      $_SESSION['e_password'] = "Podaj hasło!";
       $_SESSION['ve_password'] = 'is-invalid';
     } else {
       $_SESSION['ve_password'] = 'is-valid';
@@ -35,7 +33,6 @@ if (isset($_POST['email'])) {
     $password2 = $_POST['password2'];
     if ($password != $password2) {
       $data_valid = false;
-      $_SESSION['e_password2'] = "Podano różne hasła!";
       $_SESSION['ve_password2'] = 'is-invalid';
     } else {
       if ($password != "") {
@@ -51,11 +48,9 @@ if (isset($_POST['email'])) {
   if ((strlen($email) > 30)) {
     $data_valid = false;
     $_SESSION['ve_email'] = 'is-invalid';
-    $_SESSION['e_email'] = "Podaj email!";
   } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $data_valid = false;
     $_SESSION['ve_email'] = 'is-invalid';
-    $_SESSION['e_email'] = "Niepoprawny format emailu!";
   } else  $_SESSION['ve_email'] = 'is-valid';
 
   // Wartości opcjonalne!
@@ -72,12 +67,10 @@ if (isset($_POST['email'])) {
     $_SESSION['eu_name'] = $name; // do formularza rejestracji jako value
     if ((strlen($name) < 2) || (strlen($name) > 20)) {
       $data_valid = false;
-      $_SESSION['e_name'] = "Podaj imie!";
       $_SESSION['ve_name'] = 'is-invalid';
     } else if (!ctype_alpha($name)) {
       $data_valid = false;
       $_SESSION['ve_name'] = 'is-invalid';
-      $_SESSION['e_name'] = "Imię może składać się tylko z liter!";
     } else {
       $_SESSION['ve_name'] = 'is-valid';
       $nameQuery = "`name`='$name', ";
@@ -90,7 +83,6 @@ if (isset($_POST['email'])) {
     if ((strlen($address) < 3) || (strlen($address) > 20)) {
       $data_valid = false;
       $_SESSION['ve_address'] = 'is-invalid';
-      $_SESSION['e_address'] = "Podaj adres!";
     } else {
       $_SESSION['ve_address'] = 'is-valid';
       $addressQuery = "`address`='$address', ";
@@ -103,29 +95,15 @@ if (isset($_POST['email'])) {
     if (strlen($phone) != 9 && !preg_match("/^[0-9]$/", $phone)) {
       $data_valid = false;
       $_SESSION['ve_phone'] = 'is-invalid';
-      $_SESSION['e_phone'] = "Numer telefonu musi kładać się z 9 cyfr!";
     } else {
       $_SESSION['ve_phone'] = 'is-valid';
       $phoneQuery = "`phone`='$phone', ";
     }
   }
 
-  // WAŻNE!
-
-
-
-
-
-  // Dodac walidacje uprawnień np admin nie może zmienić zmieniać swojego uprawnienia
   $permission = $_POST['permission'];
   $permissionQuery = "`permission`='$permission', ";
   $_SESSION['eu_permission'] = $permission;
-
-
-
-
-
-  // KONIEC WAŻNEGO!
 
   if ($data_valid) {
     try {
@@ -199,7 +177,7 @@ if (isset($_POST['email'])) {
       exit();
     }
 
-    $_SESSION['general_message'] .= SuccessMessageGenerator("Eydcja użytkownika zakończona pomyślnie");
+    $_SESSION['general_message'] .= SuccessMessageGenerator("Edycja użytkownika zakończona pomyślnie");
 
     header("Location: $pUsersList");
     exit();

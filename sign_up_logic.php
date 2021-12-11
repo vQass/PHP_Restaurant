@@ -20,7 +20,6 @@ if (isset($_POST['email'])) {
     $password = $_POST['password'];
     if ((strlen($password) < 2) || (strlen($password) > 20)) {
         $data_valid = false;
-        $_SESSION['e_password'] = "Podaj hasło!";
         $_SESSION['v_password'] = 'is-invalid';
     } else {
         $_SESSION['v_password'] = 'is-valid';
@@ -29,7 +28,6 @@ if (isset($_POST['email'])) {
     $password2 = $_POST['password2'];
     if ($password != $password2 || (strlen($password) < 2 || strlen($password) > 20)) {
         $data_valid = false;
-        $_SESSION['e_password2'] = "Podano różne hasła!";
         $_SESSION['v_password2'] = 'is-invalid';
     } else {
         $_SESSION['v_password2'] = 'is-valid';
@@ -41,11 +39,9 @@ if (isset($_POST['email'])) {
     if ((strlen($email) > 30)) {
         $data_valid = false;
         $_SESSION['v_email'] = 'is-invalid';
-        $_SESSION['e_email'] = "Podaj email!";
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $data_valid = false;
         $_SESSION['v_email'] = 'is-invalid';
-        $_SESSION['e_email'] = "Niepoprawny format emailu!";
     } else  $_SESSION['v_email'] = 'is-valid';
 
 
@@ -64,12 +60,10 @@ if (isset($_POST['email'])) {
         $_SESSION['u_name'] = $name; // do formularza rejestracji jako value
         if ((strlen($name) < 2) || (strlen($name) > 20)) {
             $data_valid = false;
-            $_SESSION['e_name'] = "Podaj imie!";
             $_SESSION['v_name'] = 'is-invalid';
         } else if (!ctype_alpha($name)) {
             $data_valid = false;
             $_SESSION['v_name'] = 'is-invalid';
-            $_SESSION['e_name'] = "Imię może składać się tylko z liter!";
         } else {
             $_SESSION['v_name'] = 'is-valid';
             $nameQuery = "`name`, ";
@@ -83,7 +77,6 @@ if (isset($_POST['email'])) {
         if ((strlen($address) < 3) || (strlen($address) > 20)) {
             $data_valid = false;
             $_SESSION['v_address'] = 'is-invalid';
-            $_SESSION['e_address'] = "Podaj adres!";
         } else {
             $_SESSION['v_address'] = 'is-valid';
             $addressQuery = "`address`, ";
@@ -97,7 +90,6 @@ if (isset($_POST['email'])) {
         if (strlen($phone) != 9 && !preg_match("/^[0-9]$/", $phone)) {
             $data_valid = false;
             $_SESSION['v_phone'] = 'is-invalid';
-            $_SESSION['e_phone'] = "Numer telefonu musi kładać się z 9 cyfr!";
         } else {
             $_SESSION['v_phone'] = 'is-valid';
             $phoneQuery = "`phone`, ";
