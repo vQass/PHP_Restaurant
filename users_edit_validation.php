@@ -101,9 +101,14 @@ if (isset($_POST['email'])) {
     }
   }
 
-  $permission = $_POST['permission'];
-  $permissionQuery = "`permission`='$permission', ";
-  $_SESSION['eu_permission'] = $permission;
+
+  if (isset($_POST['permission'])) {
+    $permission = $_POST['permission'];
+    $permissionQuery = "`permission`='$permission', ";
+    $_SESSION['eu_permission'] = $permission;
+  } else {
+    $permissionQuery = "";
+  }
 
   if ($data_valid) {
     try {
@@ -153,6 +158,7 @@ if (isset($_POST['email'])) {
 
       $dbh->query("UPDATE users SET $nameQuery $permissionQuery $cityQuery $addressQuery $phoneQuery `email`='$email' $passwordQuery WHERE id = $id");
 
+      // Usuwanie danych do formularza
       unset($_SESSION['eu_idUsera']);
       unset($_SESSION['eu_name']);
       unset($_SESSION['eu_permission']);
@@ -161,6 +167,7 @@ if (isset($_POST['email'])) {
       unset($_SESSION['eu_phone']);
       unset($_SESSION['eu_email']);
 
+      // Usuwanie zmiennych do walidacji
       unset($_SESSION['ve_password']);
       unset($_SESSION['ve_password2']);
       unset($_SESSION['ve_email']);

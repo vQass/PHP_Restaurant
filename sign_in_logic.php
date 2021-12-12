@@ -8,6 +8,7 @@ if ((!isset($_POST['email'])) || (!isset($_POST['password']))) {
 
 session_start();
 
+
 try {
   require_once($pDbConnection);
   require_once($pSharedFunctions);
@@ -31,7 +32,7 @@ try {
 
         $name = explode("@", $_SESSION['user_email'])[0];
 
-        $_SESSION['general_message'] = SuccessMessageGenerator("Witaj $name!");
+        $_SESSION['general_message'] .= SuccessMessageGenerator("Witaj $name!");
 
         header("Location: $pHome"); // zmienic pozniej
       } else {

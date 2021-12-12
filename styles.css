@@ -45,7 +45,6 @@ ul li a {
 }
 
 @media screen and (min-width: 1650px) {
-
   #logoImg {
     width: 130px !important;
   }
@@ -72,11 +71,11 @@ ul li a {
   background: RGB(243, 111, 39);
 }
 
-.navbar-toggler span+span {
+.navbar-toggler span + span {
   margin-top: 4px;
 }
 
-.navbar-toggler span+span+span {
+.navbar-toggler span + span + span {
   margin-top: 4px;
 }
 
@@ -118,10 +117,11 @@ ul li a {
   font-size: 1.5rem;
 }
 
+/*
 .navbar {
   background-color: RGB(38, 40, 55);
 }
-
+*/
 #navbarSupportedContent {
   background-color: RGB(38, 40, 55);
   text-align: center !important;
@@ -140,7 +140,7 @@ ul li a {
 .Contact,
 .google {
   padding: 1px;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.97);
   color: white;
 }
 
@@ -150,7 +150,7 @@ ul li a {
 }
 
 #backgroundImg {
-  background-image: url("/images/background/pizzaBackground.jpg");
+  background-image: url("images/background/pizzaBackground.jpg") !important  ;
   background-color: #cccccc;
   height: 100vh;
   background-position: center;
@@ -177,13 +177,13 @@ ul li a {
 } */
 
 @font-face {
-  font-family: 'pizza';
-  src: url('pizzasFont/pizza.eot?45830896');
-  src: url('pizzasFont/pizza.eot?45830896#iefix') format('embedded-opentype'),
-    url('pizzasFont/pizza.woff2?45830896') format('woff2'),
-    url('pizzasFont/pizza.woff?45830896') format('woff'),
-    url('pizzasFont/pizza.ttf?45830896') format('truetype'),
-    url('pizzasFont/pizza.svg?45830896#pizza') format('svg');
+  font-family: "pizza";
+  src: url("pizzasFont/pizza.eot?45830896");
+  src: url("pizzasFont/pizza.eot?45830896#iefix") format("embedded-opentype"),
+    url("pizzasFont/pizza.woff2?45830896") format("woff2"),
+    url("pizzasFont/pizza.woff?45830896") format("woff"),
+    url("pizzasFont/pizza.ttf?45830896") format("truetype"),
+    url("pizzasFont/pizza.svg?45830896#pizza") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -204,7 +204,7 @@ input[type="password"] {
 }
 
 .icon-pizza_:before {
-  content: '\e800';
+  content: "\e800";
 }
 
 .nav-links li:hover {
@@ -265,12 +265,14 @@ input[type="password"] {
 .close_button_image {
   width: 30px;
   height: 30px;
-  filter: invert(95%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%) contrast(100%);
+  filter: invert(95%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%)
+    contrast(100%);
 }
 
 .close_button_image:hover {
   content: url("images/pizza_close.svg");
-  filter: invert(80%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%) contrast(100%);
+  filter: invert(80%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%)
+    contrast(100%);
 }
 
 #dojazd {
@@ -296,7 +298,7 @@ input[type="password"] {
   position: absolute;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  margin-top: 150px;
   left: 0;
   right: 0;
   text-align: center;
@@ -358,7 +360,6 @@ input[type="password"] {
 }
 
 @keyframes blink {
-
   0%,
   22%,
   36%,
@@ -603,7 +604,6 @@ body {
   margin-left: auto;
   margin-right: auto;
   margin-top: 20vh;
-
 }
 
 .adminNav {
@@ -636,7 +636,7 @@ body {
   }
 
   to {
-    opacity: 1.0;
+    opacity: 1;
     border: white solid 5px;
     color: yellow;
   }
@@ -649,7 +649,7 @@ body {
   line-height: 15vh;
   font-size: 30px;
   border-radius: 4px;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.95);
   border-style: solid;
   background-color: RGB(243, 111, 39);
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
@@ -663,10 +663,9 @@ body {
   align-content: center;
   gap: 20px;
   padding: 50px;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.95);
   color: white;
 }
-
 
 .ProductContainer {
   position: relative;
@@ -689,7 +688,6 @@ body {
   user-select: none;
   outline: none;
   color: #fff;
-
 }
 
 .ProductButton:hover {
@@ -698,14 +696,12 @@ body {
   box-shadow: none;
 }
 
-
 .ProductButton:focus,
 .ProductButton:active {
   background-color: RGB(203, 71, 0);
   border-style: outset;
   box-shadow: none;
 }
-
 
 .ProductBG {
   position: absolute;
@@ -745,19 +741,19 @@ body {
   background-color: RGB(223, 91, 19);
 }
 
-.ProductContainer:hover>.ProductButton {
+.ProductContainer:hover > .ProductButton {
   display: block;
 }
 
-.ProductContainer:hover>.ProductBG {
+.ProductContainer:hover > .ProductBG {
   opacity: 0.2;
 }
 
-.ProductContainer:hover>.ProductName {
+.ProductContainer:hover > .ProductName {
   display: block;
 }
 
-.ProductContainer:hover>.ProductInfoButton {
+.ProductContainer:hover > .ProductInfoButton {
   display: block;
 }
 
@@ -794,7 +790,7 @@ body {
   right: 35px;
 }
 
-.ProductInfoButton:hover>.ProductInfo {
+.ProductInfoButton:hover > .ProductInfo {
   display: block;
 }
 
@@ -810,12 +806,12 @@ body {
   border-top-right-radius: 5px;
 }
 
-.ProductContainer:hover>.ProductPrice {
+.ProductContainer:hover > .ProductPrice {
   display: block;
 }
 
 #Menu {
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.95);
   margin-left: auto;
   margin-right: auto;
   min-height: 25px;
