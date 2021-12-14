@@ -37,7 +37,7 @@
             text-align: center;
         }
 
-        <style>.table>tbody>tr>td {
+        .table>tbody>tr>td {
             vertical-align: middle;
         }
     </style>

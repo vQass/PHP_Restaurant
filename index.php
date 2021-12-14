@@ -69,14 +69,17 @@ if ($dbConnected) {
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item" onclick="document.body.scrollTop = document.documentElement.scrollTop = 0">
+                        <li class="nav-item" onclick="document.body.scrollTop = document.documentElement.scrollTop = 0" style='<?php echo $displayMain ?>'>
                             <a class="nav-link active" aria-current="page">Strona główna</a>
                         </li>
-                        <li class="nav-item" id="menu_button">
+                        <li class="nav-item" id="menu_button" style='<?php echo $displayMenu ?>'>
                             <a class="nav-link">Menu</a>
                         </li>
-                        <li class="nav-item" id="kontakt_button">
+                        <li class="nav-item" id="kontakt_button" style='<?php echo $displayKontakt ?>'>
                             <a class="nav-link">Kontakt</a>
+                        </li>
+                        <li class="nav-item" id="promocje" style='<?php echo $displayPromocja ?>' onclick="test()">
+                            <a class="nav-link">Promocje</a>
                         </li>
                         <li class="nav-item" id="singin" style='<?php echo $displaySignIn ?>'>
                             <a class="nav-link">Logowanie</a>
@@ -249,7 +252,22 @@ if ($dbConnected) {
             </form>
         </div>
     </div>
-
+    <div class="spin">
+        <div class="promocje">
+            <button id="spin">Kręć!</button>
+            <span class="arrow"></span>
+            <div class="container">
+                <div class="one">1</div>
+                <div class="two">2</div>
+                <div class="three">3</div>
+                <div class="four">4</div>
+                <div class="five">5</div>
+                <div class="six">6</div>
+                <div class="seven">7</div>
+                <div class="eight">8</div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

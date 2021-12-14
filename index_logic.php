@@ -83,13 +83,19 @@ if (isset($_SESSION['u_city'])) {
 
 
 // Po zalogowaniu
+$displayPromocja = "display: none"; // Domyślnie promocja nie jest pokazywana (dla niezalogowanych)
 $displayAdminPanel = "display: none";
 if (isset($_SESSION['user_email'])) {
   $displaySignIn = 'display: none';
   $displaySignUp = 'display: none';
   $displayLogOut = '';
+  $displayPromocja = ''; // Pokazanie promocji po zalogowaniu
   if (isset($_SESSION['user_permission'])) {
     if ($_SESSION['user_permission'] == "admin") {
+      $displayMenu = "display: none";
+      $displayKontakt = "display: none";
+      $displayPromocja = "display: none";
+      $displayMain = "display: none";
       $displayAdminPanel = "";
     }
   }
