@@ -6,7 +6,7 @@
   <link href="/images/dot_ico/users.ico" rel="icon" type="image/x-icon" />
   <style>
     body {
-      background-color: black !important;
+      background-color: rgba(0, 0, 0, 0.95) !important;
       color: white !important;
     }
 
@@ -80,7 +80,7 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
       $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania do bazy danych");
       $_SESSION['general_message'] .= ErrorMessageGenerator($e);
     }
-    echo "<a href='admin_panel.php' style='text-decoration: none; color: white;'><h3 style='border: 3px dotted white; width: 127px;text-align: center;'> ←Powrót</h3></a>";
+    echo "<a href='$pAdminPanel' style='text-decoration: none; color: white;'><h3 style='width: 127px;text-align: center;'> ←Powrót</h3></a>";
     echo "<h1 style='text-align: center;'>Użytkownicy aktywni</h1>";
     echo '<table class="center table " style="width: 80%; margin-left:auto; margin-right:auto">
             <tr>
@@ -135,7 +135,7 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
                     </form> 
     
                     <form method='post' action ='$pUsersOrders'> 
-                        <button name='ksiazki' class='btn btn-outline-warning' type='submit' value='{$row['id']}'>Zamówienia</button>
+                        <button name='orders' class='btn btn-outline-warning' type='submit' value='{$row['id']}'>Zamówienia</button>
                     </form>  
                 </td>
             </tr>";

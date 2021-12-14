@@ -129,7 +129,7 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
 
 } else {
   // jeśli nie ma uprawnień administratora
-  header("Location: $pUsersList");
+  header("Location: $pHome");
 }
 ?>
 
@@ -142,7 +142,7 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
 
   <style>
     body {
-      background-color: black;
+      background-color: rgba(0, 0, 0, 0.95);
       color: white;
     }
 
