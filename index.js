@@ -45,6 +45,47 @@ $(document).ready(function () {
             navMain.collapse('hide');
         });
     });
+    // Kolo fortuny - promocje
+    let container = document.querySelector(".container");
+    let btn = document.getElementById("spin");
+    let number = Math.ceil(Math.random() * 1080);
+
+    btn.onclick = function () {
+        container.style.transform = "rotate(" + number + "deg)";
+        let temp = (number + 22.5) % 360;
+
+        if (temp >= 0 && temp <= 44) {
+
+        }
+        if (temp >= 45 && temp <= 89) {
+
+        }
+        if (temp >= 90 && temp <= 134) {
+
+        }
+        if (temp >= 135 && temp <= 179) {
+
+        }
+        if (temp >= 180 && temp <= 224) {
+
+        }
+        if (temp >= 225 && temp <= 269) {
+
+        }
+        if (temp >= 270 && temp <= 314) {
+
+        }
+        if (temp >= 315 && temp <= 359) {
+
+        }
+    }
+
+    document.addEventListener('mouseup', function (e) { //Funkcja która ukrywa diva z promocja po nacisnieciu poza obręb diva
+        let container = document.getElementsByClassName('spin')[0];
+        if (!container.contains(e.target)) {
+            container.style.display = 'none';
+        }
+    });
 
 });
 
@@ -55,6 +96,10 @@ function showDiv() {
     else {
         document.getElementById('google').style.display = "block";
     }
+}
+
+function test() {
+    document.getElementsByClassName('spin')[0].style.display = "inline";
 }
 
 
