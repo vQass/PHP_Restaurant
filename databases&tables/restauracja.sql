@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 14 Gru 2021, 15:34
+-- Czas generowania: 14 Gru 2021, 16:19
 -- Wersja serwera: 10.4.13-MariaDB
 -- Wersja PHP: 7.4.8
 
@@ -83,26 +83,46 @@ CREATE TABLE `orders` (
   `idOrders` int(11) NOT NULL,
   `idUser` int(11) NOT NULL,
   `idProduct` int(11) NOT NULL,
-  `status` enum('W trakcie realizacji','zrealizowano','anulowano','') NOT NULL,
-  `number` int(3) NOT NULL,
-  `city` varchar(40) NOT NULL,
-  `address` varchar(64) NOT NULL,
-  `phone` varchar(9) NOT NULL,
-  `discountCode` varchar(16) NOT NULL DEFAULT 'Brak'
+  `number` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `orders`
 --
 
-INSERT INTO `orders` (`idOrders`, `idUser`, `idProduct`, `status`, `number`, `city`, `address`, `phone`, `discountCode`) VALUES
-(1, 16, 1, 'W trakcie realizacji', 2, 'Gliwice', 'Polna 2', '123456789', 'Brak'),
-(1, 16, 2, 'W trakcie realizacji', 1, 'Gliwice', 'Polna 2', '123456789', 'Brak'),
-(1, 16, 3, 'W trakcie realizacji', 1, 'Gliwice', 'Polna 2', '123456789', 'Brak'),
-(1, 16, 4, 'W trakcie realizacji', 1, 'Gliwice', 'Polna 2', '123456789', 'Brak'),
-(2, 16, 2, 'W trakcie realizacji', 1, 'Gliwice', 'Polna 2', '123456789', 'Brak'),
-(2, 16, 6, 'W trakcie realizacji', 1, 'Gliwice', 'Polna 2', '123456789', 'Brak'),
-(3, 16, 2, 'W trakcie realizacji', 1, 'Gliwice', 'Polna 2', '123456789', 'inflacja10');
+INSERT INTO `orders` (`idOrders`, `idUser`, `idProduct`, `number`) VALUES
+(1, 16, 1, 2),
+(1, 16, 2, 1),
+(1, 16, 3, 1),
+(1, 16, 4, 1),
+(2, 16, 2, 1),
+(2, 16, 6, 1),
+(3, 16, 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `ordersdetails`
+--
+
+CREATE TABLE `ordersdetails` (
+  `idOrders` int(11) NOT NULL,
+  `name` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `city` varchar(40) CHARACTER SET utf8 NOT NULL,
+  `address` varchar(64) CHARACTER SET utf8 NOT NULL,
+  `phone` varchar(9) CHARACTER SET utf8 NOT NULL,
+  `discountCode` varchar(16) NOT NULL DEFAULT 'Brak',
+  `status` enum('W trakcie realizacji','zrealizowano','anulowano','') CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `ordersdetails`
+--
+
+INSERT INTO `ordersdetails` (`idOrders`, `name`, `city`, `address`, `phone`, `discountCode`, `status`) VALUES
+(1, 'Jan', 'Gliwice', 'Polna 2', '987654321', 'inflacja10', 'W trakcie realizacji'),
+(2, 'synJana', 'Katowice', 'Lesna 2', '123456789', 'naKosztFirmy', 'W trakcie realizacji'),
+(3, 'Jan', 'Gliwice', 'Polna 2', '987654321', 'Brak', 'W trakcie realizacji');
 
 -- --------------------------------------------------------
 
@@ -153,6 +173,12 @@ ALTER TABLE `menu`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`idOrders`,`idUser`,`idProduct`) USING BTREE;
+
+--
+-- Indeksy dla tabeli `ordersdetails`
+--
+ALTER TABLE `ordersdetails`
+  ADD PRIMARY KEY (`idOrders`);
 
 --
 -- Indeksy dla tabeli `users`

@@ -89,11 +89,12 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
 
         // Zamówienia w trakcie realizacji
         $query = "SELECT o.idOrders, m.name AS pizza, o.number, m.price * o.number * (1 - (d.discount/100)) AS price,
-         u.name, o.city, o.address, o.phone, u.email, d.code FROM users u
-         INNER JOIN orders o ON u.id = o.idUser
+         od.name, od.city, od.address, od.phone, u.email, d.code FROM orders o
+         INNER JOIN ordersdetails od ON od.idOrders = o.idOrders
+         INNER JOIN users u ON o.idUser = u.id 
          INNER JOIN menu m ON o.idProduct = m.id 
-         INNER JOIN discounts d ON d.code = o.discountCode
-         WHERE u.id = $id AND o.Status = 'W trakcie realizacji' ORDER BY o.idOrders";
+         LEFT OUTER JOIN discounts d ON d.code = od.discountCode
+         WHERE u.id = $id AND od.Status = 'W trakcie realizacji' ORDER BY o.idOrders";
 
         $queryCount = "SELECT idOrders,  count(*) AS count FROM orders GROUP BY idOrders";
 
