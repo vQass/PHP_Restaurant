@@ -19,6 +19,12 @@ if ($dbConnected) {
     try {
         $menuQuery = $dbh->query('SELECT * FROM menu');
         $tmpQuery = $dbh->query('SELECT category FROM menu GROUP BY category HAVING count(*) >= 1');
+        if (isset($_SESSION['user_email']))
+        {
+            $basketQuerry = $dbh->query('SELECT * FROM orders o INNER JOIN menu m ON o.idProduct = m.id WHERE idUser = ' . $_SESSION['user_id']);
+            $basket = $basketQuerry->fetchAll();
+        }
+        
     } catch (Exception $e) {
         $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania do bazy danych");
         $_SESSION['general_message'] .= ErrorMessageGenerator($e);
@@ -252,6 +258,33 @@ if ($dbConnected) {
             </form>
         </div>
     </div>
+
+    <div class="basket_button" id="basket_button_id" style='<?php echo $displayBasket ?>'>
+        <img src="images/basket.svg" class="basket_image">
+    </div>
+
+    <div class="popup_container" id="basket_container">
+        <div class="basket">
+            <div class="close_button" id="close_basket"><img class="close_button_image" src="images/pizza_open.svg"></div>
+            <h1>Zamówienie:</h1>
+            <div class="orders">
+            <?php
+            // chyba git nie mam innego pomysłu jak to zrobić
+            foreach ($basket as $order) {
+                echo "<div class='order'>";
+                    echo "<div class='order_name'>".$order['name']."</div>";
+                    echo "<div class='order_price'>".$order['price']."</div>";
+                    echo "<div class='order_count'>".$order['number']."</div>";
+                echo "</div>";
+                echo "<hr>";
+            }
+            ?>
+
+            </div>
+            <div>suma</div>
+        </div>
+    </div>
+    
     <div class="spin">
         <div class="promocje">
             <button id="spin">Kręć!</button>

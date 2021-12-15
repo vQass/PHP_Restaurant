@@ -930,3 +930,51 @@ body {
   outline: none;
   letter-spacing: 1px;
 }
+<<<<<<< HEAD
+=======
+
+.basket_button {
+  position: fixed;
+  background-color: RGB(243, 111, 39);
+  width: 80px;
+  height: 80px;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+  border-radius: 40px;
+}
+
+.basket_button:hover {
+  background-color: RGB(223, 91, 19);
+}
+
+.basket_button:focus,
+.basket_button:active {
+  background-color: RGB(203, 71, 0);
+}
+
+.basket_image {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  top: 5px;
+  left: 5px;
+  filter: invert(95%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%) contrast(100%);
+}
+
+.basket {
+  position: absolute;
+  width: 350px;
+  height: 100%;
+  background-color: RGB(38, 40, 55);
+  border-radius: 5px;
+  padding: 10px;
+  color: #dfdfdf;
+  right: 0px;
+  top: 0px;
+}
+
+#basket_container {
+  z-index: 9999;
+}
+>>>>>>> 482a908f9fc96d01461636d891f31f98f26e7cb2
