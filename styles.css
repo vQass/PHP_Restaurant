@@ -137,6 +137,7 @@ ul li a {
   background-color: #cccccc;
   height: 100vh;
   background-position: center;
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
 }
