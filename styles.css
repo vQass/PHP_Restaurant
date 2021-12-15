@@ -133,6 +133,7 @@ ul li a {
 
 #backgroundImg {
   background-image: url("images/background/pizzaBackground.jpg") !important;
+  background-attachment: fixed;
   background-color: #cccccc;
   height: 100vh;
   background-position: center;
@@ -817,23 +818,24 @@ body {
   justify-content: center;
   height: 70vh;
   overflow: hidden;
-  width: 500px;
+  width: 32.5vw;
+
 }
 
 .container {
-  width: 500px;
-  height: 500px;
+  width: 70vw;
+  height: 70vh;
   background-color: #ccc;
   border-radius: 50%;
-  border: 15px solid #dde;
+  border: 1vw solid #dde;
   position: relative;
   overflow: hidden;
-  transition: 5s;
+  transition: 1s;
 }
 
 .container div {
-  height: 50%;
-  width: 200px;
+  height: 33vh;
+  width: 10em;
   position: absolute;
   clip-path: polygon(100% 0, 50% 100%, 0 0);
   transform: translateX(-50%);
@@ -846,7 +848,7 @@ body {
   font-weight: bold;
   font-family: sans-serif;
   color: #fff;
-  left: 135px;
+  left: 8.75vw;
 }
 
 .container .one {
@@ -889,7 +891,7 @@ body {
   transform: rotate(315deg);
 }
 
-.arrow {
+/* .arrow {
   position: fixed !important;
   top: 17vh;
   left: 51vw;
@@ -906,7 +908,7 @@ body {
   height: 55px;
   width: 75px;
 
-}
+} */
 
 #spin {
   position: absolute;
@@ -920,8 +922,8 @@ body {
   font-weight: bold;
   font-size: 20px;
   color: #a2a2a2;
-  width: 80px;
-  height: 80px;
+  width: 5vw;
+  height: 11vh;
   font-family: sans-serif;
   border-radius: 50%;
   cursor: pointer;
