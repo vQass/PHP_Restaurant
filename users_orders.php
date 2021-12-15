@@ -114,7 +114,7 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
          WHERE o.idUser = $id AND od.Status = 'W trakcie realizacji' ORDER BY o.idOrders";
 
         // Używane do rowspana w tabeli
-        $queryCount = "SELECT idOrders,  count(*) AS count FROM orders GROUP BY idOrders";
+        $queryCount = "SELECT idOrders, count(*) AS count FROM orders GROUP BY idOrders";
 
         try {
             $sth = $dbh->query($queryProducts);
@@ -159,6 +159,7 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
         $arrCount = $sthCount->fetchAll();
         $prevId = -1;
 
+        $i = 1; // Do wyświetlenia podsumowania zamówienia
         while ($row = $sth->fetch()) {
 
             $count = 1;
@@ -166,7 +167,7 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
             // Podpatrzyłem na necie xD 
             foreach ($arrCount as $key => $val) {
                 if ($val['idOrders'] == $row['idOrders']) {
-                    $count = $arrCount[$key]['count'];
+                    $count = $arrCount[$key]['count'] + 1;
                     break;
                 }
             }
@@ -178,6 +179,7 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
                 <td class='align-middle'>{$row['price']}</td>
 
                 ";
+
             if ($prevId != $row['idOrders']) {
                 $prevId = $row['idOrders'];
 
@@ -201,6 +203,10 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
                     <button name='orders' class='btn btn-outline-success align-middle' style='width: 50px' type='submit' value='{$row['idOrders']}'>✔</button>
                     </form>  
                     </td>";
+            }
+            $i++;
+            if ($i == $count) {
+                echo " <td class='align-middle'>suma</td> ";
             }
             echo "</tr>";
         }
