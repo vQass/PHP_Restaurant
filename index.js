@@ -1,6 +1,11 @@
 $(document).ready(function () {
-    $('#singup').click(function () {
-        console.log("woo");
+    if (window.XMLHttpRequest)
+    {
+        xmlhttp = new XMLHttpRequest();
+    }
+
+
+    $('#singup').click(function () {;
         $('#singup_container').css('visibility', 'visible');
     });
 
@@ -15,6 +20,14 @@ $(document).ready(function () {
     $('#close_singin').click(function () {
         $('#singin_container').css('visibility', 'hidden');
     });
+
+    $('#basket_button_id').click(function () {
+        $('#basket_container').css('visibility', 'visible');
+    });
+    $('#close_basket').click(function () {
+        $('#basket_container').css('visibility', 'hidden');
+    });
+
     $('#menu_button').click(function () {
         let yOffset = parseInt(-document.getElementsByTagName('nav')[0].clientHeight);
         const element = document.getElementById("menu");
@@ -101,5 +114,4 @@ function showDiv() {
 function test() {
     document.getElementsByClassName('spin')[0].style.display = "inline";
 }
-
 
