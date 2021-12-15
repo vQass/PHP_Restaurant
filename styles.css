@@ -930,8 +930,6 @@ body {
   outline: none;
   letter-spacing: 1px;
 }
-<<<<<<< HEAD
-=======
 
 .basket_button {
   position: fixed;
@@ -959,7 +957,8 @@ body {
   height: 70px;
   top: 5px;
   left: 5px;
-  filter: invert(95%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%) contrast(100%);
+  filter: invert(95%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%)
+    contrast(100%);
 }
 
 .basket {
@@ -977,4 +976,3 @@ body {
 #basket_container {
   z-index: 9999;
 }
->>>>>>> 482a908f9fc96d01461636d891f31f98f26e7cb2
