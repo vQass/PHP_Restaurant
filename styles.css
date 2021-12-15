@@ -61,11 +61,11 @@ ul li a {
   background: RGB(243, 111, 39);
 }
 
-.navbar-toggler span+span {
+.navbar-toggler span + span {
   margin-top: 4px;
 }
 
-.navbar-toggler span+span+span {
+.navbar-toggler span + span + span {
   margin-top: 4px;
 }
 
@@ -249,12 +249,14 @@ input[type="password"] {
 .close_button_image {
   width: 30px;
   height: 30px;
-  filter: invert(95%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%) contrast(100%);
+  filter: invert(95%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%)
+    contrast(100%);
 }
 
 .close_button_image:hover {
   content: url("images/pizza_close.svg");
-  filter: invert(80%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%) contrast(100%);
+  filter: invert(80%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(100%)
+    contrast(100%);
 }
 
 #dojazd {
@@ -342,7 +344,6 @@ input[type="password"] {
 }
 
 @keyframes blink {
-
   0%,
   22%,
   36%,
@@ -724,19 +725,19 @@ body {
   background-color: RGB(223, 91, 19);
 }
 
-.ProductContainer:hover>.ProductButton {
+.ProductContainer:hover > .ProductButton {
   display: block;
 }
 
-.ProductContainer:hover>.ProductBG {
+.ProductContainer:hover > .ProductBG {
   opacity: 0.2;
 }
 
-.ProductContainer:hover>.ProductName {
+.ProductContainer:hover > .ProductName {
   display: block;
 }
 
-.ProductContainer:hover>.ProductInfoButton {
+.ProductContainer:hover > .ProductInfoButton {
   display: block;
 }
 
@@ -773,7 +774,7 @@ body {
   right: 35px;
 }
 
-.ProductInfoButton:hover>.ProductInfo {
+.ProductInfoButton:hover > .ProductInfo {
   display: block;
 }
 
@@ -789,7 +790,7 @@ body {
   border-top-right-radius: 5px;
 }
 
-.ProductContainer:hover>.ProductPrice {
+.ProductContainer:hover > .ProductPrice {
   display: block;
 }
 
@@ -819,7 +820,6 @@ body {
   height: 70vh;
   overflow: hidden;
   width: 32.5vw;
-
 }
 
 .container {

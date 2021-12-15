@@ -16,3 +16,5 @@ $pUsersEditValidation = "users_edit_validation.php";
 $pUsersDelete         = "users_delete.php";
 $pUsersActivate       = "users_activate.php";
 $pUsersOrders         = "users_orders.php";
+$pUsersOrdersCancel   = "users_orders_cancel.php";
+$pUsersOrdersConfirm  = "users_orders_confirm.php";
