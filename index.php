@@ -19,12 +19,10 @@ if ($dbConnected) {
     try {
         $menuQuery = $dbh->query('SELECT * FROM menu');
         $tmpQuery = $dbh->query('SELECT category FROM menu GROUP BY category HAVING count(*) >= 1');
-        if (isset($_SESSION['user_email']))
-        {
+        if (isset($_SESSION['user_email'])) {
             $basketQuerry = $dbh->query('SELECT * FROM orders o INNER JOIN menu m ON o.idProduct = m.id WHERE idUser = ' . $_SESSION['user_id']);
             $basket = $basketQuerry->fetchAll();
         }
-        
     } catch (Exception $e) {
         $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania do bazy danych");
         $_SESSION['general_message'] .= ErrorMessageGenerator($e);
@@ -96,8 +94,11 @@ if ($dbConnected) {
                         <li class="nav-item" id="logout" style='<?php echo $displayLogout ?>'>
                             <a href="<?php echo $pLogout ?>" class="nav-link">Wyloguj</a>
                         </li>
-                        <li class="nav-item" id="users_list" style='<?php echo $displayAdminPanel ?>'>
+                        <li class="nav-item" style='<?php echo $displayAdminPanel ?>'>
                             <a href="<?php echo $pAdminPanel ?>" class="nav-link">Panel administratora</a>
+                        </li>
+                        <li class="nav-item" style='<?php echo $displayEmployeePanel ?>'>
+                            <a href="<?php echo $pEmployeePanel ?>" class="nav-link">Panel pracownika</a>
                         </li>
                     </ul>
                     <ul style="display: none" class="navbar-nav ml-auto">
@@ -268,23 +269,23 @@ if ($dbConnected) {
             <div class="close_button" id="close_basket"><img class="close_button_image" src="images/pizza_open.svg"></div>
             <h1>Zamówienie:</h1>
             <div class="orders">
-            <?php
-            // chyba git nie mam innego pomysłu jak to zrobić
-            foreach ($basket as $order) {
-                echo "<div class='order'>";
-                    echo "<div class='order_name'>".$order['name']."</div>";
-                    echo "<div class='order_price'>".$order['price']."</div>";
-                    echo "<div class='order_count'>".$order['number']."</div>";
-                echo "</div>";
-                echo "<hr>";
-            }
-            ?>
+                <?php
+                // chyba git nie mam innego pomysłu jak to zrobić
+                foreach ($basket as $order) {
+                    echo "<div class='order'>";
+                    echo "<div class='order_name'>" . $order['name'] . "</div>";
+                    echo "<div class='order_price'>" . $order['price'] . "</div>";
+                    echo "<div class='order_count'>" . $order['number'] . "</div>";
+                    echo "</div>";
+                    echo "<hr>";
+                }
+                ?>
 
             </div>
             <div>suma</div>
         </div>
     </div>
-    
+
     <div class="spin">
         <div class="promocje">
             <button id="spin">Kręć!</button>

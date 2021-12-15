@@ -77,9 +77,6 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
         $dbConnected = false;
     }
 
-    // Wyświetlanie alertów
-
-    // 
 
     if ($dbConnected) {
 

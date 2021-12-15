@@ -85,7 +85,10 @@ if (isset($_SESSION['u_city'])) {
 // Po zalogowaniu
 $displayBasket = "display: none";
 $displayPromocja = "display: none"; // Domyślnie promocja nie jest pokazywana (dla niezalogowanych)
+
 $displayAdminPanel = "display: none";
+$displayEmployeePanel = "display: none";
+
 if (isset($_SESSION['user_email'])) {
   $displaySignIn = 'display: none';
   $displaySignUp = 'display: none';
@@ -99,6 +102,15 @@ if (isset($_SESSION['user_email'])) {
       $displayPromocja = "display: none";
       $displayMain = "display: none";
       $displayAdminPanel = "";
+      $displayEmployeePanel = "";
+    }
+    if ($_SESSION['user_permission'] == "employee") {
+      $displayMenu = "display: none";
+      $displayKontakt = "display: none";
+      $displayPromocja = "display: none";
+      $displayMain = "display: none";
+      $displayAdminPanel = "display: none";
+      $displayEmployeePanel = "";
     }
   }
 } else {
