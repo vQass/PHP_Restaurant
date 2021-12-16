@@ -9,6 +9,11 @@ if (!isset($_POST['dodaj_zam'])) {
     header("Location: $pOrders");
     exit();
 }
+if(count($_SESSION['koszyk'])<=0){
+    header("Location: $pOrders");
+    $_SESSION['general_message'] = ErrorMessageGenerator("Dodaj coś do zamówienia");
+    exit();
+}
 require_once "$pDbConnection";
 $idUser=$_SESSION['user_id'];
 $tmpQuery = $dbh->prepare('SELECT idOrders FROM orders WHERE idUser= :idUser GROUP BY idOrders HAVING count(*) >= 1 ');

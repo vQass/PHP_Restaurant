@@ -67,12 +67,7 @@ try {
 </head>
 
 <body>
-
- 
-  <div class="mb-3" style="margin-top: 40px;">
-    <h1>Składanie zamówienia:</h1>
-
-    <div class="absolute">
+<div class="absolute">
             <?php
             if (isset($_SESSION['general_message'])) {
                 echo $_SESSION['general_message'];
@@ -80,6 +75,10 @@ try {
             }
             ?>
         </div>
+ 
+  <div class="mb-3" style="margin-top: 40px;">
+    <h1>Składanie zamówienia:</h1>
+
     <form action="<?php echo $pOrderAdd?>" method='POST' class='g-3'>
 
     <div class="col-md-12">

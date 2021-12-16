@@ -21,7 +21,7 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
         $stmt = $dbh->prepare('DELETE FROM menu WHERE id = :id');
 	    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 	    $stmt->execute();
-        $_SESSION['general_message'] = SuccessMessageGenerator("Pomyślnie usunięto $name!");
+        $_SESSION['general_message'] = SuccessMessageGenerator("Pomyślnie usunięto {$name['name']}!");
       } catch (Exception $e) {
         $_SESSION['general_message'] .= ErrorMessageGenerator("Błąd podczas uwania użytkownika");
         $_SESSION['general_message'] .= ErrorMessageGenerator($e);
