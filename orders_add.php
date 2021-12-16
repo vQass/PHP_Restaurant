@@ -6,23 +6,25 @@ if (!isset($_SESSION['user_email'])) {
     header("Location: $pHome");
     exit();
 }
-if (!isset($_POST['dodaj_zam'])) {
+// To musiałem usunąć bo nie bedzię zasetowane po wprowadzeniu formularza z danymi zamówienia
+// if (!isset($_POST['dodaj_zam'])) {
+//     header("Location: $pOrders");
+//     exit();
+// }
+if (!isset($_SESSION['idOrders'])) {
     header("Location: $pOrders");
+    $_SESSION['general_message'] = ErrorMessageGenerator("Z jakiegos powodu nie przekazano id zamówienia");
     exit();
 }
-if (count($_SESSION['koszyk']) <= 0) {
-    header("Location: $pOrders");
-    $_SESSION['general_message'] = ErrorMessageGenerator("Dodaj coś do zamówienia");
-    exit();
-}
+
 require_once "$pDbConnection";
 $idUser = $_SESSION['user_id'];
-// $tmpQuery = $dbh->prepare('SELECT idOrders FROM orders WHERE idUser= :idUser GROUP BY idOrders HAVING count(*) >= 1 ');
-// $result = $tmpQuery->execute([$idUser]);
-// $tmp = $tmpQuery->rowCount();
 
-$sth = $dbh->query("SELECT MAX(idOrders) as orderCount FROM orders");
-$idOrders = $sth->fetch()['orderCount'] + 1;
+
+$idOrders = $_SESSION['idOrders'];
+unset($_SESSION['idOrders']);
+
+
 
 for ($i = 0; $i < count($_SESSION['koszyk']); $i = $i + 2) {
     $idProduct = $_SESSION['koszyk'][$i];
@@ -32,4 +34,19 @@ for ($i = 0; $i < count($_SESSION['koszyk']); $i = $i + 2) {
     $result = $stmt->execute([$idOrders, $idUser, $idProduct, $number]);
 }
 unset($_SESSION['koszyk']);
+
+// Usuwanie danych do formularza danych zamówienia
+unset($_SESSION['od_name']);
+unset($_SESSION['od_city']);
+unset($_SESSION['od_address']);
+unset($_SESSION['od_phone']);
+unset($_SESSION['od_code']);
+// Usuwanie zmiennych do walidacji danych z zamówienia
+unset($_SESSION['ve_name']);
+unset($_SESSION['ve_city']);
+unset($_SESSION['ve_address']);
+unset($_SESSION['ve_phone']);
+$_SESSION['general_message'] .= SuccessMessageGenerator("Dziękujemy za złożenie zamówienia!");
+
+
 header("Location: $pHome");

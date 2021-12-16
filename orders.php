@@ -125,7 +125,7 @@ if (isset($_SESSION['ve_number'])) {
   }
   ?>
   <div class="mb-3" style="margin-top: 40px;">
-    <form method="POST" action="<?php echo $pOrdersAdd ?>">
+    <form method="POST" action="<?php echo $pOrdersDetails ?>">
       <div class="col-12">
         <button class="btn btn-primary" type="submit" name="dodaj_zam">Złóż zamówienie</button>
       </div>
