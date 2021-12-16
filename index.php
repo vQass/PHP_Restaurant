@@ -99,7 +99,7 @@ if ($dbConnected) {
                         <li class="nav-item" style='<?php echo $displayOrders ?>'>
                             <a href="<?php echo $pOrders ?>" class="nav-link">Złóż zamówienie</a>
                         </li>
-                        <li class="nav-item" id="zamawianie" style='<?php echo $displayOrders ?>'>
+                        <li class="nav-item" id="zamawianie" style='<?php echo $displayOrders ?>' onclick="showWheel()">
                             <a class="nav-link">Promocje</a>
                         </li>
                         <li class="nav-item" id="singin" style='<?php echo $displaySignIn ?>'>
@@ -286,47 +286,47 @@ if ($dbConnected) {
             <div class="close_button" id="close_basket"><img class="close_button_image" src="images/pizza_open.svg"></div>
             <h1>Zamówienie:</h1>
             <div class="orders">
-            <?php
-            // chyba git nie mam innego pomysłu jak to zrobić
-            foreach ($basket as $order) {
-                echo "<div class='order'>";
-                    echo "<div class='order_name'>".$order['name']."</div>";
-                    echo "<div class='order_price'>Cena: ".round(($order['price']*(1-($order['dis']/100))), 2)." zł</div>";
-                    echo "<div class='order_count'>Szt.: ".$order['number']."</div>";
-                echo "</div>";
-                echo "<hr>";
-            }
-            
-            echo '</div>';
-            
-            if (isset($basket[0]))
-            {
-                echo '<div>Suma: '.round($basketS[0]['summ'], 2).'</div>';
-            }
+                <?php
+                // chyba git nie mam innego pomysłu jak to zrobić
+                foreach ($basket as $order) {
+                    echo "<div class='order'>";
+                    echo "<div class='order_name'>" . $order['name'] . "</div>";
+                    echo "<div class='order_price'>Cena: " . round(($order['price'] * (1 - ($order['dis'] / 100))), 2) . " zł</div>";
+                    echo "<div class='order_count'>Szt.: " . $order['number'] . "</div>";
+                    echo "</div>";
+                    echo "<hr>";
+                }
 
-            
+                echo '</div>';
 
-            ?>
+                if (isset($basket[0])) {
+                    echo '<div>Suma: ' . round($basketS[0]['summ'], 2) . '</div>';
+                }
 
-        </div>
-    </div>
 
-    <div class="spin">
-        <div class="promocje">
-            <button id="spin">Kręć!</button>
-            <span class="arrow"></span>
-            <div class="container">
-                <div class="one">1</div>
-                <div class="two">2</div>
-                <div class="three">3</div>
-                <div class="four">4</div>
-                <div class="five">5</div>
-                <div class="six">6</div>
-                <div class="seven">7</div>
-                <div class="eight">8</div>
+
+                ?>
+
             </div>
         </div>
-    </div>
+
+        <div class="spin">
+            <h3 style="color: red;">Koło fortuny jest aktualnie w budowie! Przepraszamy za zainstaniałe problemy. Kody zniżkowe znajdują się na naszym fanpage'u!</h3>
+            <div class="promocje">
+                <button id="spin">Kręć!</button>
+                <span class="arrow"></span>
+                <div class="container">
+                    <div class="one">Aktualne</div>
+                    <div class="two">promocje</div>
+                    <div class="three">są na</div>
+                    <div class="four">naszej</div>
+                    <div class="five">stronie</div>
+                    <div class="six"> Za utrud</div>
+                    <div class="seven">nienia prze</div>
+                    <div class="eight">praszamy.</div>
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>

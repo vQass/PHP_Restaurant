@@ -4,33 +4,32 @@ if (!isset($_SESSION['user_email'])) {
   header("Location: $pHome");
   exit();
 }
-if (!isset($_SESSION['koszyk']))
-    {
-      $_SESSION['koszyk']=array();
-    }
+if (!isset($_SESSION['koszyk'])) {
+  $_SESSION['koszyk'] = array();
+}
 require_once("paths.php");
 require_once("$pSharedFunctions");
 echo "<a href='menu.php' style='text-decoration: none; color: white;'>
-<h3 style='border: 3px dotted white; width: 127px;text-align: center;'> ←Wróć do strony głównej</h3></a>";
+<h3 style='border: 3px white; white-space: nowrap; width: 127px;text-align: center;'> ←Powrót</h3></a>";
 try {
-    require_once "$pDbConnection";
-  } catch (Exception $e) {
-    $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas łączenia z bazą danych");
-    $_SESSION['general_message'] .= ErrorMessageGenerator($e);
-    $dbConnected = false;
-  }
+  require_once "$pDbConnection";
+} catch (Exception $e) {
+  $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas łączenia z bazą danych");
+  $_SESSION['general_message'] .= ErrorMessageGenerator($e);
+  $dbConnected = false;
+}
 try {
-    $menuQuery = $dbh->query("SELECT id,name FROM menu ");
-  } catch (Exception $e) {
-    $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania do bazy danych");
-    $_SESSION['general_message'] .= ErrorMessageGenerator($e);
-  }
-  $menu=$menuQuery->fetchAll();
+  $menuQuery = $dbh->query("SELECT id,name FROM menu ");
+} catch (Exception $e) {
+  $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania do bazy danych");
+  $_SESSION['general_message'] .= ErrorMessageGenerator($e);
+}
+$menu = $menuQuery->fetchAll();
 
-  if (isset($_SESSION['ve_number'])) {
-    $veNumber = $_SESSION['ve_number'];
-    unset($_SESSION['ve_number']);
-  } else $veNumber = "";
+if (isset($_SESSION['ve_number'])) {
+  $veNumber = $_SESSION['ve_number'];
+  unset($_SESSION['ve_number']);
+} else $veNumber = "";
 ?>
 
 <!DOCTYPE HTML>
@@ -67,70 +66,70 @@ try {
 </head>
 
 <body>
-<div class="absolute">
-            <?php
-            if (isset($_SESSION['general_message'])) {
-                echo $_SESSION['general_message'];
-                unset($_SESSION['general_message']);
-            }
-            ?>
-        </div>
- 
+  <div class="absolute">
+    <?php
+    if (isset($_SESSION['general_message'])) {
+      echo $_SESSION['general_message'];
+      unset($_SESSION['general_message']);
+    }
+    ?>
+  </div>
+
   <div class="mb-3" style="margin-top: 40px;">
     <h1>Składanie zamówienia:</h1>
 
-    <form action="<?php echo $pOrderAdd?>" method='POST' class='g-3'>
+    <form action="<?php echo $pOrderAdd ?>" method='POST' class='g-3'>
 
-    <div class="col-md-12">
+      <div class="col-md-12">
         <label for="inputProduct" class="form-label">Lista produktow</label>
-            <select class="form-select" id="inputProduct" name="product">
-          <?php foreach($menu as $temp){
-           echo "<option value='{$temp['id']}'>{$temp['name'] }</option>";
-           }?>
+        <select class="form-select" id="inputProduct" name="product">
+          <?php foreach ($menu as $temp) {
+            echo "<option value='{$temp['id']}'>{$temp['name']}</option>";
+          } ?>
         </select>
-    </div>
+      </div>
 
-    <div class="col-md-12">
-        <label for="inputIlosc" class="form-label">Ilosc</label> 
-        <input type="text" name="ile" id="inputIlosc" class="form-control <?php echo $veNumber ?>" value='1'/>
-    </div>
-    <br>
-    <div class="col-12">
+      <div class="col-md-12">
+        <label for="inputIlosc" class="form-label">Ilosc</label>
+        <input type="text" name="ile" id="inputIlosc" class="form-control <?php echo $veNumber ?>" value='1' />
+      </div>
+      <br>
+      <div class="col-12">
         <button class="btn btn-primary" type="submit" name="sumbit">Dodaj do koszyka</button>
       </div>
     </form>
   </div>
   <?php
-    if(isset($_SESSION['koszyk'])){
-        echo '<table class="center table " style="width: 80%; margin-left:auto; margin-right:auto; color: red;">
+  if (isset($_SESSION['koszyk'])) {
+    echo '<table class="center table " style="width: 80%; margin-left:auto; margin-right:auto; color: red;">
             <tr>
                 <th>Nazwa</th>
                 <th>Ilosc</th>
                 <th>Akcja</th>
             </tr>';
-        for($i=0;$i<count($_SESSION['koszyk']);$i=$i+2){
-            $temp=$_SESSION['koszyk'][$i];
-            $nameQuery = $dbh->query("SELECT name FROM menu WHERE id=$temp");
-            $name = $nameQuery->fetch();
-            echo '<tr >';
-            echo "<td>{$name['name']}</td>";
-            echo "<td>{$_SESSION['koszyk'][$i+1]}</td>";
-            echo "<td>
+    for ($i = 0; $i < count($_SESSION['koszyk']); $i = $i + 2) {
+      $temp = $_SESSION['koszyk'][$i];
+      $nameQuery = $dbh->query("SELECT name FROM menu WHERE id=$temp");
+      $name = $nameQuery->fetch();
+      echo '<tr >';
+      echo "<td>{$name['name']}</td>";
+      echo "<td>{$_SESSION['koszyk'][$i + 1]}</td>";
+      echo "<td>
             <form method='post' action='$pOrderDelete'> 
             <button name='delete' class='btn btn-outline-danger' type='submit' value='{$i}'>Usuń</button>
             </form>
             </td>";
-            echo "</tr>";
-        }
-        echo "</table>";
+      echo "</tr>";
     }
+    echo "</table>";
+  }
   ?>
   <div class="mb-3" style="margin-top: 40px;">
-  <form method="POST" action="<?php echo $pOrdersAdd?>">
-  <div class="col-12">
-  <button class="btn btn-primary" type="submit" name="dodaj_zam">Złóż zamówienie</button>
-  </div>
-  </form>
+    <form method="POST" action="<?php echo $pOrdersAdd ?>">
+      <div class="col-12">
+        <button class="btn btn-primary" type="submit" name="dodaj_zam">Złóż zamówienie</button>
+      </div>
+    </form>
   </div>
 </body>
 

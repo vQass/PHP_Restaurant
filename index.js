@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    $('#singup').click(function () {;
+    $('#singup').click(function () {
+        ;
         $('#singup_container').css('visibility', 'visible');
     });
 
@@ -105,7 +106,7 @@ function showDiv() {
     }
 }
 
-function test() {
+function showWheel() {
     document.getElementsByClassName('spin')[0].style.display = "inline";
 }
 
