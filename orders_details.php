@@ -140,7 +140,9 @@ if (isset($_SESSION['user_email'])) {
 </head>
 
 <body>
-
+  <a href='orders.php' style='text-decoration: none; color: white;'>
+    <h3 style='border: 3px white; white-space: nowrap; width: 127px;text-align: center;'> ←Powrót</h3>
+  </a>
   <div class='absolute'>
     <?php
     if (isset($_SESSION['general_message'])) {
