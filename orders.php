@@ -10,7 +10,7 @@ if (!isset($_SESSION['koszyk'])) {
 require_once("paths.php");
 require_once("$pSharedFunctions");
 echo "<a href='menu.php' style='text-decoration: none; color: white;'>
-<h3 style='border: 3px dotted white; width: 127px;text-align: center;'> ←Wróć do strony głównej</h3></a>";
+<h3 style='border: 3px white; white-space: nowrap; width: 127px;text-align: center;'> ←Powrót</h3></a>";
 try {
   require_once "$pDbConnection";
 } catch (Exception $e) {

@@ -96,6 +96,7 @@ if (isset($_SESSION['user_email'])) {
   $displaySignUp = 'display: none';
   $displayLogOut = '';
   $displayBasket = "display: block";
+  $displayMain = "display: none";
   $displayPromocja = ''; // Pokazanie promocji po zalogowaniu
   $displayOrders = '';
   if (isset($_SESSION['user_permission'])) {
