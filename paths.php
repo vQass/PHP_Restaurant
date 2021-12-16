@@ -27,3 +27,7 @@ $pMenuAddValidation    = "menu_add_validation.php";
 $pEmployeePanel        = "employee_panel.php";
 $pEmployeePanelConfirm = "employee_panel_confirm.php";
 $pEmployeePanelCancel  = "employee_panel_cancel.php";
+$pOrders               = "orders.php";
+$pOrdersAdd            = "orders_add.php";
+$pOrderAdd             = "order_add.php";
+$pOrderDelete          = "order_delete.php";

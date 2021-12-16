@@ -82,7 +82,10 @@ if ($dbConnected) {
                         <li class="nav-item" id="kontakt_button" style='<?php echo $displayKontakt ?>'>
                             <a class="nav-link">Kontakt</a>
                         </li>
-                        <li class="nav-item" id="promocje" style='<?php echo $displayPromocja ?>' onclick="test()">
+                        <li class="nav-item" style='<?php echo $displayOrders ?>'>
+                            <a href="<?php echo $pOrders ?>" class="nav-link">Złóż zamówienie</a>
+                        </li>
+                        <li class="nav-item" id="zamawianie" style='<?php echo $displayOrders ?>'>
                             <a class="nav-link">Promocje</a>
                         </li>
                         <li class="nav-item" id="singin" style='<?php echo $displaySignIn ?>'>
@@ -135,7 +138,7 @@ if ($dbConnected) {
                     echo '<div class="ProductContainer">';
                     echo "<img class='ProductImage' src='Menu/{$temp['photo']}'>";
                     echo '<div class="ProductBG"></div>';
-                    echo "<input type='submit' class='ProductButton' value='+' name='{$temp['id']}'>";
+                    //echo "<input type='submit' class='ProductButton' value='+' name='{$temp['id']}'>";
                     echo "<div class='ProductPrice'> ";
                     echo number_format($temp['price'], 2);
                     echo "</div>";

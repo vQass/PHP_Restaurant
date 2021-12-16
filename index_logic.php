@@ -86,6 +86,8 @@ if (isset($_SESSION['u_city'])) {
 $displayBasket = "display: none";
 $displayPromocja = "display: none"; // Domyślnie promocja nie jest pokazywana (dla niezalogowanych)
 
+$displayOrders = "display: none";
+
 $displayAdminPanel = "display: none";
 $displayEmployeePanel = "display: none";
 
@@ -95,6 +97,7 @@ if (isset($_SESSION['user_email'])) {
   $displayLogOut = '';
   $displayBasket = "display: block";
   $displayPromocja = ''; // Pokazanie promocji po zalogowaniu
+  $displayOrders = '';
   if (isset($_SESSION['user_permission'])) {
     if ($_SESSION['user_permission'] == "admin") {
       $displayMenu = "display: none";
