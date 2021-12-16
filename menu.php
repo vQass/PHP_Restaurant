@@ -29,8 +29,11 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
       $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania do bazy danych");
       $_SESSION['general_message'] .= ErrorMessageGenerator($e);
     }
-    echo "<a href='admin_panel.php' style='text-decoration: none; color: white;'><h3 style='border: 3px dotted white; width: 127px;text-align: center;'> ←Powrót</h3></a>";
+    echo "<a href='$pAdminPanel' style='text-decoration: none; color: white;'>
+    <h3 style='width: 127px;text-align: center;'> ←Powrót</h3></a>";
+    
     echo "<form method='post' action ='$pMenuAdd' style='text-align: center;'> 
+    
     <button name='Add' class='btn btn-outline-warning btn-lg' type='submit'>Dodaj do Menu</button>
     </form>";
     echo "<h1 style='text-align: center;'>Menu</h1>";

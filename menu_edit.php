@@ -9,8 +9,8 @@ if (!isset($_SESSION['user_permission']) && $_SESSION['user_permission'] != "adm
   exit();
   
 }
-echo "<a href='menu.php' style='text-decoration: none; color: white;'>
-<h3 style='border: 3px dotted white; width: 127px;text-align: center;'> ←Powrót</h3></a>";
+echo "<a href='$pMenu' style='text-decoration: none; color: white;'>
+    <h3 style='width: 127px;text-align: center;'> ←Powrót</h3></a>";
 if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admin") {
   try {
     require_once "$pDbConnection";

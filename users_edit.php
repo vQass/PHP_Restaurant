@@ -131,6 +131,8 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
   // jeśli nie ma uprawnień administratora
   header("Location: $pHome");
 }
+echo "<a href='$pUsersList' style='text-decoration: none; color: white;'>
+    <h3 style='width: 127px;text-align: center;'> ←Powrót</h3></a>";
 ?>
 
 <!DOCTYPE HTML>
