@@ -1,10 +1,4 @@
 $(document).ready(function () {
-    if (window.XMLHttpRequest)
-    {
-        xmlhttp = new XMLHttpRequest();
-    }
-
-
     $('#singup').click(function () {;
         $('#singup_container').css('visibility', 'visible');
     });

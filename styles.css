@@ -963,7 +963,7 @@ body {
 
 .basket {
   position: absolute;
-  width: 350px;
+  width: 360px;
   height: 100%;
   background-color: RGB(38, 40, 55);
   border-radius: 5px;
@@ -971,6 +971,8 @@ body {
   color: #dfdfdf;
   right: 0px;
   top: 0px;
+  box-sizing: border-box;
+  overflow-y: scroll;
 }
 
 #basket_container {
