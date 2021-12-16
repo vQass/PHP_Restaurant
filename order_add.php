@@ -16,6 +16,13 @@ if(isset($_POST['ile'])&& isset($_POST['product'])){
     $product = $_POST['product'];
 }
 
+for($i=0;$i<count($_SESSION['koszyk']);$i=$i+2){
+    if($product==$_SESSION['koszyk'][$i]){
+      $_SESSION['koszyk'][$i+1]+=$number;
+      $data_valid=false;
+    }
+}
+
 if ($number != "") {
     if ( !preg_match("/^[0-9]$/", $number)) {
       $_SESSION['ve_number'] = 'is-invalid';
