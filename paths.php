@@ -31,3 +31,4 @@ $pOrders               = "orders.php";
 $pOrdersAdd            = "orders_add.php";
 $pOrderAdd             = "order_add.php";
 $pOrderDelete          = "order_delete.php";
+$pOrdersDetails = "orders_details.php";
