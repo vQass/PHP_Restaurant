@@ -34,7 +34,7 @@ if ($dbConnected) {
                                         INNER JOIN ordersdetails od ON o.idOrders = od.idOrders)
                                         INNER JOIN discounts d ON d.code = od.discountCode 
                                         WHERE o.idUser = ' . $_SESSION['user_id'] . ' AND od.status = "W trakcie realizacji"
-                                        GROUP BY o.idOrders');
+                                        GROUP BY o.idUser');
             $basketS = $basketQuerryS->fetchAll();
         }
     } catch (Exception $e) {
@@ -300,10 +300,8 @@ if ($dbConnected) {
                 echo '</div>';
 
                 if (isset($basket[0])) {
-                    echo '<div>Suma: ' . round($basketS[0]['summ'], 2) . '</div>';
+                    echo '<div>Suma: ' . round($basketS[0]['summ'], 2) . 'zł</div>';
                 }
-
-
 
                 ?>
 
