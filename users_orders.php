@@ -37,6 +37,10 @@
             text-align: center;
         }
 
+        .tableUnderline {
+            border-bottom: solid 4px !important;
+        }
+
         .table>tbody>tr>td {
             vertical-align: middle;
         }
@@ -87,25 +91,10 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
             $id = $_SESSION['ueo_id'];
         }
 
-        // Trzy podobne tabele, można spróbować zrobić je w funkcji jak będzie czas
+        require_once "print_table_functions.php";
 
-        // Pobieram wszystkie nazwy produktów, ceny etc.
-        $queryProducts = "SELECT o.idOrders, m.name AS pizza, o.number, m.price * o.number * (1 - (d.discount/100)) AS price FROM orders o
-        INNER JOIN ordersdetails od ON od.idOrders = o.idOrders
-        INNER JOIN menu m ON o.idProduct = m.id 
-        LEFT OUTER JOIN discounts d ON d.code = od.discountCode
-        WHERE o.idUser = $id AND od.Status = 'W trakcie realizacji' ORDER BY o.idOrders";
-
-        // DISTINCT żeby pobrać tylko jeden wiersz, nie wiem, nie mam innego pomsyłu
-        // Pobieram jeden wiersz dla każdego zamówienia do wyświetleni miasta etc.
-        $queryDetails = "SELECT DISTINCT o.idOrders, od.discountCode, od.name, od.city, od.address, od.phone, u.email FROM ordersdetails od
-         INNER JOIN orders o ON od.idOrders = o.idOrders
-         INNER JOIN users u ON o.idUser = u.id
-         WHERE o.idUser = $id AND od.Status = 'W trakcie realizacji' ORDER BY o.idOrders";
-
-        // Używane do rowspana w tabeli
-        $queryCount = "SELECT idOrders, count(*) AS count FROM orders GROUP BY idOrders";
-
+        // Zamówienia w trakcie realizacji 
+        $queryProducts = generateProductsQuery(" WHERE o.idUser = $id AND od.Status = 'W trakcie realizacji' ");
         try {
             $sth = $dbh->query($queryProducts);
         } catch (Exception $e) {
@@ -113,121 +102,38 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
             $_SESSION['general_message'] .= ErrorMessageGenerator($e);
         }
 
-        try {
-            $sthCount = $dbh->query($queryCount);
-        } catch (Exception $e) {
-            $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania drugiego do bazy danych");
-            $_SESSION['general_message'] .= ErrorMessageGenerator($e);
-        }
-
+        $queryDetails = generateDetailsQuery(" WHERE o.idUser = $id AND od.Status = 'W trakcie realizacji' ");
         try {
             $sthDetails = $dbh->query($queryDetails);
         } catch (Exception $e) {
             $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania trzeciego do bazy danych");
+            $_SESSION['general_message'] .= ErrorMessageGenerator($e);
+        }
+
+        // Używane do rowspana w tabeli
+        $queryCount = "SELECT idOrders, count(*) AS count FROM orders GROUP BY idOrders";
+        try {
+            $sthCount = $dbh->query($queryCount);
+        } catch (Exception $e) {
+            $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania drugiego do bazy danych");
             $_SESSION['general_message'] .= ErrorMessageGenerator($e);
         }
 
         echo "<a href='$pUsersList' style='text-decoration: none; color: white;'><h3 style='width: 127px;text-align: center;'> ←Powrót</h3></a>";
+
+
         echo "<h1 style='text-align: center;'>Zamówienia w trakcie realizacji</h1>";
-        echo '<table class="center table " style="width: 80%; margin-left:auto; margin-right:auto">
-            <tr>
-                <th>Produkt</th>
-                <th>Ilość</th>
-                <th>Cena</th>
-                <th>ID zam.</th>
-                <th>Kod prom.</th>
-                <th>Imię</th>
-                <th>Miasto</th>
-                <th>Adres</th>
-                <th>Telefon</th>
-                <th>Email</th>
-                <th>Akcja</th>
-            </tr>';
-        // to na chwile do bazy danych, jesli dalej tu jest to znaczy, że zapomniałem, sorka
-        // INSERT INTO `orders`(`idOrders`, `idUser`, `idProduct`, `price`, `status`, `number`, `city`, `address`, `phone`) VALUES (1,16,2,17,'W trakcie realizacji',1,'Gliwice', 'Polna 2', '123456789')
 
+        // Count jest robiony tylko raz ale używany we wszystkich tabelach do rowspana
         $arrCount = $sthCount->fetchAll();
-        $prevId = -1;
-        $sum = 0;
-        $i = 1; // Do wyświetlenia podsumowania zamówienia
-        while ($row = $sth->fetch()) {
 
-            $count = 1;
+        $arrData = $sth->fetchAll();
 
-            // Podpatrzyłem na necie xD 
-            foreach ($arrCount as $key => $val) {
-                if ($val['idOrders'] == $row['idOrders']) {
-                    $count = $arrCount[$key]['count'] + 1;
-                    break;
-                }
-            }
-            $price = number_format($row['price'], 2);
-
-            echo "
-            <tr >
-                <td class='align-middle'>{$row['pizza']}</td>
-                <td class='align-middle'>{$row['number']}</td>
-                <td class='align-middle'>$price zł</td>
-                ";
-
-            $sum += $row['price'];
-
-            if ($prevId != $row['idOrders']) {
-                $prevId = $row['idOrders'];
-
-                // czerwony 
-
-                $rowDetails = $sthDetails->fetch();
-                echo "
-                <td rowspan='$count'class='align-middle'>{$row['idOrders']}</td>
-                <td rowspan='$count'class='align-middle'>{$rowDetails['discountCode']}</td>
-                <td rowspan='$count'class='align-middle'>{$rowDetails['name']}</td>
-                <td rowspan='$count'class='align-middle'>{$rowDetails['city']}</td>
-                <td rowspan='$count'class='align-middle'>{$rowDetails['address']}</td>
-                <td rowspan='$count'class='align-middle'>{$rowDetails['phone']}</td>
-                <td rowspan='$count'class='align-middle'>{$rowDetails['email']}</td>
-                
-                    <td rowspan='$count' class='align-middle'>
-                    
-                    <form method='post' action='$pUsersOrdersCancel'> 
-                    <button name='cancel' class='btn btn-outline-danger align-middle' style='width: 50px' type='submit' value='{$row['idOrders']}'>✘</button>
-                    </form> 
-                    
-                    <form method='post' action='$pUsersOrdersConfirm'> 
-                    <button name='confirm' class='btn btn-outline-success align-middle' style='width: 50px' type='submit' value='{$row['idOrders']}'>✔</button>
-                    </form>  
-                    </td>";
-            }
-            echo "</tr>";
-            $i++;
-            if ($i == $count) {
-                $sum = number_format($sum, 2);
-                echo " <td class='align-middle' ><h4>Suma:</h4> </td> ";
-                echo " <td colspan='2'class='align-middle' ><h4>$sum zł</h4> </td> ";
-                $sum = 0;
-                $i = 1;
-            }
-        }
-        echo '</table>';
+        printTable($arrData, $arrCount, $sthDetails, "users_orders.php", true, "Zrealizowano", true, "Anulowano");
         // Zamówienia w trakcie realizacji koniec
 
-
         // Zamówienia zrealizowane
-
-        // Pobieram wszystkie nazwy produktów, ceny etc.
-        $queryProducts = "SELECT o.idOrders, m.name AS pizza, o.number, m.price * o.number * (1 - (d.discount/100)) AS price FROM orders o
-        INNER JOIN ordersdetails od ON od.idOrders = o.idOrders
-        INNER JOIN menu m ON o.idProduct = m.id 
-        LEFT OUTER JOIN discounts d ON d.code = od.discountCode
-        WHERE o.idUser = $id AND od.Status = 'Zrealizowano' ORDER BY o.idOrders";
-
-        // DISTINCT żeby pobrać tylko jeden wiersz, nie wiem, nie mam innego pomsyłu
-        // Pobieram jeden wiersz dla każdego zamówienia do wyświetleni miasta etc.
-        $queryDetails = "SELECT DISTINCT o.idOrders, od.discountCode, od.name, od.city, od.address, od.phone, u.email FROM ordersdetails od
-         INNER JOIN orders o ON od.idOrders = o.idOrders
-         INNER JOIN users u ON o.idUser = u.id
-         WHERE o.idUser = $id AND od.Status = 'Zrealizowano' ORDER BY o.idOrders";
-
+        $queryProducts = generateProductsQuery(" WHERE o.idUser = $id AND od.Status = 'Zrealizowano' ");
         try {
             $sth = $dbh->query($queryProducts);
         } catch (Exception $e) {
@@ -235,103 +141,24 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
             $_SESSION['general_message'] .= ErrorMessageGenerator($e);
         }
 
+        $queryDetails = generateDetailsQuery(" WHERE o.idUser = $id AND od.Status = 'Zrealizowano' ");
         try {
-            $sthCount = $dbh->query($queryCount);
+            $sthDetails = $dbh->query($queryDetails);
         } catch (Exception $e) {
             $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania drugiego do bazy danych");
             $_SESSION['general_message'] .= ErrorMessageGenerator($e);
         }
 
-        try {
-            $sthDetails = $dbh->query($queryDetails);
-        } catch (Exception $e) {
-            $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania trzeciego do bazy danych");
-            $_SESSION['general_message'] .= ErrorMessageGenerator($e);
-        }
 
         echo "<h1 style='text-align: center;'>Zamówienia zrealizowane</h1>";
-        echo '<table class="center table " style="width: 80%; margin-left:auto; margin-right:auto">
-            <tr>
-                <th>Produkt</th>
-                <th>Ilość</th>
-                <th>Cena</th>
-                <th>ID zam.</th>
-                <th>Kod prom.</th>
-                <th>Imię</th>
-                <th>Miasto</th>
-                <th>Adres</th>
-                <th>Telefon</th>
-                <th>Email</th>
-            </tr>';
 
-        $prevId = -1;
-        $sum = 0; // Do wyświetlenia podsumowania zamówienia
-        $i = 1; // Do wyświetlenia podsumowania zamówienia
-        while ($row = $sth->fetch()) {
+        $arrData = $sth->fetchAll();
 
-            $count = 1;
-
-            foreach ($arrCount as $key => $val) {
-                if ($val['idOrders'] == $row['idOrders']) {
-                    $count = $arrCount[$key]['count'] + 1;
-                    break;
-                }
-            }
-            $price = number_format($row['price'], 2);
-
-            echo "
-            <tr >
-                <td class='align-middle'>{$row['pizza']}</td>
-                <td class='align-middle'>{$row['number']}</td>
-                <td class='align-middle'>$price zł</td>
-                ";
-
-            $sum += $row['price'];
-
-            if ($prevId != $row['idOrders']) {
-                $prevId = $row['idOrders'];
-
-
-                $rowDetails = $sthDetails->fetch();
-                echo "
-                <td rowspan='$count'class='align-middle'>{$row['idOrders']}</td>
-                <td rowspan='$count'class='align-middle'>{$rowDetails['discountCode']}</td>
-                <td rowspan='$count'class='align-middle'>{$rowDetails['name']}</td>
-                <td rowspan='$count'class='align-middle'>{$rowDetails['city']}</td>
-                <td rowspan='$count'class='align-middle'>{$rowDetails['address']}</td>
-                <td rowspan='$count'class='align-middle'>{$rowDetails['phone']}</td>
-                <td rowspan='$count'class='align-middle'>{$rowDetails['email']}</td>
-";
-            }
-            echo "</tr>";
-            $i++;
-            if ($i == $count) {
-                $sum = number_format($sum, 2);
-                echo " <td class='align-middle' ><h4>Suma:</h4> </td> ";
-                echo " <td colspan='2'class='align-middle' ><h4>$sum zł</h4> </td> ";
-                $sum = 0;
-                $i = 1;
-            }
-        }
-        echo '</table>';
+        printTable($arrData, $arrCount, $sthDetails);
         // Zamówienia zrealizowane koniec
 
         // Zamówienia anulowane
-
-        // Pobieram wszystkie nazwy produktów, ceny etc.
-        $queryProducts = "SELECT o.idOrders, m.name AS pizza, o.number, m.price * o.number * (1 - (d.discount/100)) AS price FROM orders o
-        INNER JOIN ordersdetails od ON od.idOrders = o.idOrders
-        INNER JOIN menu m ON o.idProduct = m.id 
-        LEFT OUTER JOIN discounts d ON d.code = od.discountCode
-        WHERE o.idUser = $id AND od.Status = 'Anulowano' ORDER BY o.idOrders";
-
-        // DISTINCT żeby pobrać tylko jeden wiersz, nie wiem, nie mam innego pomsyłu
-        // Pobieram jeden wiersz dla każdego zamówienia do wyświetleni miasta etc.
-        $queryDetails = "SELECT DISTINCT o.idOrders, od.discountCode, od.name, od.city, od.address, od.phone, u.email FROM ordersdetails od
-         INNER JOIN orders o ON od.idOrders = o.idOrders
-         INNER JOIN users u ON o.idUser = u.id
-         WHERE o.idUser = $id AND od.Status = 'Anulowano' ORDER BY o.idOrders";
-
+        $queryProducts = generateProductsQuery(" WHERE o.idUser = $id AND od.Status = 'Anulowano' ");
         try {
             $sth = $dbh->query($queryProducts);
         } catch (Exception $e) {
@@ -339,85 +166,20 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
             $_SESSION['general_message'] .= ErrorMessageGenerator($e);
         }
 
+        $queryDetails = generateDetailsQuery(" WHERE o.idUser = $id AND od.Status = 'Anulowano' ");
         try {
-            $sthCount = $dbh->query($queryCount);
+            $sthDetails = $dbh->query($queryDetails);
         } catch (Exception $e) {
             $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania drugiego do bazy danych");
             $_SESSION['general_message'] .= ErrorMessageGenerator($e);
         }
 
-        try {
-            $sthDetails = $dbh->query($queryDetails);
-        } catch (Exception $e) {
-            $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania trzeciego do bazy danych");
-            $_SESSION['general_message'] .= ErrorMessageGenerator($e);
-        }
 
         echo "<h1 style='text-align: center;'>Zamówienia anulowane</h1>";
-        echo '<table class="center table " style="width: 80%; margin-left:auto; margin-right:auto">
-            <tr>
-                <th>Produkt</th>
-                <th>Ilość</th>
-                <th>Cena</th>
-                <th>ID zam.</th>
-                <th>Kod prom.</th>
-                <th>Imię</th>
-                <th>Miasto</th>
-                <th>Adres</th>
-                <th>Telefon</th>
-                <th>Email</th>
-            </tr>';
 
-        $prevId = -1;
-        $sum = 0; // Do wyświetlenia podsumowania zamówienia
-        $i = 1; // Do wyświetlenia podsumowania zamówienia
-        while ($row = $sth->fetch()) {
+        $arrData = $sth->fetchAll();
 
-            $count = 1;
-
-            foreach ($arrCount as $key => $val) {
-                if ($val['idOrders'] == $row['idOrders']) {
-                    $count = $arrCount[$key]['count'] + 1;
-                    break;
-                }
-            }
-
-            $price = number_format($row['price'], 2);
-            echo "
-            <tr >
-                <td class='align-middle'>{$row['pizza']}</td>
-                <td class='align-middle'>{$row['number']}</td>
-                <td class='align-middle'>$price zł</td>
-                ";
-
-            $sum += $row['price'];
-
-            if ($prevId != $row['idOrders']) {
-                $prevId = $row['idOrders'];
-
-
-                $rowDetails = $sthDetails->fetch();
-                echo "
-                <td rowspan='$count'class='align-middle'>{$row['idOrders']}</td>
-                <td rowspan='$count'class='align-middle'>{$rowDetails['discountCode']}</td>
-                <td rowspan='$count'class='align-middle'>{$rowDetails['name']}</td>
-                <td rowspan='$count'class='align-middle'>{$rowDetails['city']}</td>
-                <td rowspan='$count'class='align-middle'>{$rowDetails['address']}</td>
-                <td rowspan='$count'class='align-middle'>{$rowDetails['phone']}</td>
-                <td rowspan='$count'class='align-middle'>{$rowDetails['email']}</td>
-                ";
-            }
-            echo "</tr>";
-            $i++;
-            if ($i == $count) {
-                $sum = number_format($sum, 2);
-                echo " <td class='align-middle' ><h4>Suma:</h4> </td> ";
-                echo " <td colspan='2'class='align-middle' ><h4>$sum zł</h4> </td> ";
-                $sum = 0;
-                $i = 1;
-            }
-        }
-        echo '</table>';
+        printTable($arrData, $arrCount, $sthDetails);
         // Zamówienia anulowane koniec
 
 
