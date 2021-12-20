@@ -9,8 +9,6 @@ if (!isset($_SESSION['koszyk'])) {
 }
 require_once("paths.php");
 require_once("$pSharedFunctions");
-echo "<a href='index.php' style='text-decoration: none; color: white;'>
-<h3 style='border: 3px white; white-space: nowrap; width: 127px;text-align: center;'> ←Powrót</h3></a>";
 try {
   require_once "$pDbConnection";
 } catch (Exception $e) {
@@ -36,6 +34,8 @@ if (isset($_SESSION['ve_number'])) {
 <html lang="pl">
 
 <head>
+  <title>Złóż zamówienie</title>
+  <link rel="stylesheet" href="styles.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
@@ -66,6 +66,12 @@ if (isset($_SESSION['ve_number'])) {
 </head>
 
 <body>
+  <nav class="navbar navbar-expand-xxl navbar-dark">
+    <div class="adminNav">
+      <a class="navbar-brand" href="index.php"><img id="logoImg" src="images/logo.jpg" alt="Logo"></a>
+      <a class="navbar-brand logomen" href="index.php">Restau<span class="fast-flicker">racja</span> u <span class="flicker">Mentzena</span></a>
+    </div>
+  </nav>
   <div class="absolute">
     <?php
     if (isset($_SESSION['general_message'])) {
@@ -76,7 +82,7 @@ if (isset($_SESSION['ve_number'])) {
   </div>
 
   <div class="mb-3" style="margin-top: 40px;">
-    <h1>Składanie zamówienia:</h1>
+    <h1 style="margin-top: 20vh;">Składanie zamówienia:</h1>
 
     <form action="<?php echo $pOrderAdd ?>" method='POST' class='g-3'>
 

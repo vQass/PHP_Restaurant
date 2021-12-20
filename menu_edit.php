@@ -4,13 +4,10 @@ session_start();
 require_once("paths.php");
 require_once("$pSharedFunctions");
 if (!isset($_SESSION['user_permission']) && $_SESSION['user_permission'] != "admin") {
-  
+
   header("Location: $pHome");
   exit();
-  
 }
-echo "<a href='$pMenu' style='text-decoration: none; color: white;'>
-    <h3 style='width: 127px;text-align: center;'> ←Powrót</h3></a>";
 if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admin") {
   try {
     require_once "$pDbConnection";
@@ -74,7 +71,6 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
   } else {
     $tmp = "selected";
   }
-
 } else {
   // jeśli nie ma uprawnień administratora
   header("Location: $pUsersList");
@@ -101,6 +97,8 @@ if (isset($_SESSION['ve_photo'])) {
 <html lang="pl">
 
 <head>
+  <title>Edycja menu</title>
+  <link rel="stylesheet" href="styles.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
@@ -131,7 +129,12 @@ if (isset($_SESSION['ve_photo'])) {
 </head>
 
 <body>
-
+  <nav class="navbar navbar-expand-xxl navbar-dark">
+    <div class="adminNav">
+      <a class="navbar-brand" href="menu.php"><img id="logoImg" src="images/logo.jpg" alt="Logo"></a>
+      <a class="navbar-brand logomen" href="menu.php">Restau<span class="fast-flicker">racja</span> u <span class="flicker">Mentzena</span></a>
+    </div>
+  </nav>
   <div class='absolute'>
     <?php
     if (isset($_SESSION['general_message'])) {
@@ -141,7 +144,7 @@ if (isset($_SESSION['ve_photo'])) {
     ?>
   </div>
   <div class="mb-3" style="margin-top: 40px;">
-    <h1>Edycja Menu:</h1>
+    <h1 style="margin-top: 20vh;">Edycja Menu:</h1>
 
     <form action='<?php echo $pMenuEditValidation ?>' method='POST' class='g-3' enctype='multipart/form-data'>
       <div class="col-md-12">

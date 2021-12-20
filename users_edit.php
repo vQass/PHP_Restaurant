@@ -131,14 +131,14 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
   // jeśli nie ma uprawnień administratora
   header("Location: $pHome");
 }
-echo "<a href='$pUsersList' style='text-decoration: none; color: white;'>
-    <h3 style='width: 127px;text-align: center;'> ←Powrót</h3></a>";
 ?>
 
 <!DOCTYPE HTML>
 <html lang="pl">
 
 <head>
+  <title>Edycja użytkownika</title>
+  <link rel="stylesheet" href="styles.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
@@ -169,7 +169,12 @@ echo "<a href='$pUsersList' style='text-decoration: none; color: white;'>
 </head>
 
 <body>
-
+  <nav class="navbar navbar-expand-xxl navbar-dark">
+    <div class="adminNav">
+      <a class="navbar-brand" href="users_list.php"><img id="logoImg" src="images/logo.jpg" alt="Logo"></a>
+      <a class="navbar-brand logomen" href="users_list.php">Restau<span class="fast-flicker">racja</span> u <span class="flicker">Mentzena</span></a>
+    </div>
+  </nav>
   <div class='absolute'>
     <?php
     if (isset($_SESSION['general_message'])) {
@@ -179,7 +184,7 @@ echo "<a href='$pUsersList' style='text-decoration: none; color: white;'>
     ?>
   </div>
   <div class="mb-3" style="margin-top: 40px;">
-    <h1>Rejestracja:</h1>
+    <h1 style="margin-top: 20vh; text-align: center;">Rejestracja:</h1>
 
     <form action='<?php echo $pUsersEditValidation ?>' method='POST' class='g-3'>
       <div class="col-md-12">

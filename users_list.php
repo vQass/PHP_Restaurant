@@ -3,6 +3,7 @@
 
 <head>
   <title>Lista uzytkownikow</title>
+  <link rel="stylesheet" href="styles.css">
   <link href="/images/dot_ico/users.ico" rel="icon" type="image/x-icon" />
   <style>
     body {
@@ -44,7 +45,12 @@
 </head>
 
 <body>
-
+  <nav class="navbar navbar-expand-xxl navbar-dark">
+    <div class="adminNav">
+      <a class="navbar-brand" href="index.php"><img id="logoImg" src="images/logo.jpg" alt="Logo"></a>
+      <a class="navbar-brand logomen" href="index.php">Restau<span class="fast-flicker">racja</span> u <span class="flicker">Mentzena</span></a>
+    </div>
+  </nav>
 </body>
 
 </html>
@@ -80,8 +86,7 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
       $_SESSION['general_message'] = ErrorMessageGenerator("Błąd podczas wykonywania zapytania do bazy danych");
       $_SESSION['general_message'] .= ErrorMessageGenerator($e);
     }
-    echo "<a href='$pAdminPanel' style='text-decoration: none; color: white;'><h3 style='width: 127px;text-align: center;'> ←Powrót</h3></a>";
-    echo "<h1 style='text-align: center;'>Użytkownicy aktywni</h1>";
+    echo "<h1 style='text-align: center; margin-top: 15vh;'>Użytkownicy aktywni</h1>";
     echo '<table class="center table " style="width: 80%; margin-left:auto; margin-right:auto">
             <tr>
                 <th>ID</th>

@@ -105,6 +105,7 @@ if (isset($_SESSION['user_email'])) {
       $displayKontakt = "display: none";
       $displayPromocja = "display: none";
       $displayMain = "display: none";
+      $displayOrders = "display: none";
       $displayAdminPanel = "";
       $displayEmployeePanel = "";
     }
@@ -112,6 +113,7 @@ if (isset($_SESSION['user_email'])) {
       $displayMenu = "display: none";
       $displayKontakt = "display: none";
       $displayPromocja = "display: none";
+      $displayOrders = "display: none";
       $displayMain = "display: none";
       $displayAdminPanel = "display: none";
       $displayEmployeePanel = "";

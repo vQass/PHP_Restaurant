@@ -2,8 +2,8 @@
 <html>
 
 <head>
-  <title>Lista uzytkownikow</title>
-  <link href="/images/dot_ico/users.ico" rel="icon" type="image/x-icon" />
+  <title>Lista zamówień</title>
+  <link href="/images/dot_ico/zamowienia.ico" rel="icon" type="image/x-icon" />
   <style>
     body {
       background-color: rgba(0, 0, 0, 0.90) !important;
@@ -45,8 +45,7 @@
       vertical-align: middle;
     }
   </style>
-
-  </style>
+  <link rel="stylesheet" href="styles.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -54,6 +53,13 @@
 </head>
 
 <body>
+  <nav class="navbar navbar-expand-xxl navbar-dark">
+    <div class="adminNav">
+      <a class="navbar-brand" href="index.php"><img id="logoImg" src="images/logo.jpg" alt="Logo"></a>
+      <a class="navbar-brand logomen" href="index.php">Restau<span class="fast-flicker">racja</span> u <span class="flicker">Mentzena</span></a>
+    </div>
+  </nav>
+
   <div class='absolute'>
     <?php
     session_start();
@@ -110,9 +116,7 @@ if (isset($_SESSION['user_permission']) && ($_SESSION['user_permission'] == "adm
       $_SESSION['general_message'] .= ErrorMessageGenerator($e);
     }
 
-    echo "<a href='$pHome' style='text-decoration: none; color: white;'><h3 style='width: 127px;text-align: center;'> ←Powrót</h3></a>";
-
-    echo "<h1 style='text-align: center;'>Zamówienia w trakcie realizacji</h1>";
+    echo "<h1 style='text-align: center; margin-top: 13vh;'>Zamówienia w trakcie realizacji</h1>";
 
     // Count jest robiony tylko raz ale używany we wszystkich tabelach do rowspana
     $arrCount = $sthCount->fetchAll();

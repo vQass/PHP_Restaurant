@@ -31,10 +31,10 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
     }
     echo "<a href='$pAdminPanel' style='text-decoration: none; color: white;'>
     <h3 style='width: 127px;text-align: center;'> ←Powrót</h3></a>";
-    
+
     echo "<form method='post' action ='$pMenuAdd' style='text-align: center;'> 
     
-    <button name='Add' class='btn btn-outline-warning btn-lg' type='submit'>Dodaj do Menu</button>
+    <button name='Add' class='btn btn-outline-warning btn-lg' style='margin-top: 15vh; margin-bottom: 2vh;' type='submit'>Dodaj do Menu</button>
     </form>";
     echo "<h1 style='text-align: center;'>Menu</h1>";
     echo '<table class="center table " style="width: 80%; margin-left:auto; margin-right:auto">
@@ -47,18 +47,18 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
                 <th>Opis</th>
                 <th>Akcja</th>
             </tr>';
-      $menu=$menuQuery->fetchAll();
-     foreach($menu as $temp){
-        echo "<tr>
+    $menu = $menuQuery->fetchAll();
+    foreach ($menu as $temp) {
+      echo "<tr>
     <td>{$temp['id']}</td>
     <td>{$temp['name']}</td>
     <td>{$temp['category']}</td>
     <td>";
-    echo number_format($temp['price'], 2); 
-    echo "</td>
+      echo number_format($temp['price'], 2);
+      echo "</td>
     <td>{$temp['photo']}</td>";
-    echo '<td>'.nl2br("{$temp['description']}").'</td>';
-    echo"
+      echo '<td>' . nl2br("{$temp['description']}") . '</td>';
+      echo "
     <td >
         <form method='post' action ='$pMenuEdit'> 
             <button name='edit' class='btn btn-outline-primary' type='submit' value='{$temp['id']}'>Edytuj</button>
@@ -80,6 +80,8 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
 <html>
 
 <head>
+  <link href="/images/dot_ico/menu.ico" rel="icon" type="image/x-icon" />
+  <link rel="stylesheet" href="styles.css">
   <title>Menu</title>
   <style>
     body {
@@ -121,7 +123,12 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
 </head>
 
 <body>
-
+  <nav class="navbar navbar-expand-xxl navbar-dark">
+    <div class="adminNav">
+      <a class="navbar-brand" href="index.php"><img id="logoImg" src="images/logo.jpg" alt="Logo"></a>
+      <a class="navbar-brand logomen" href="index.php">Restau<span class="fast-flicker">racja</span> u <span class="flicker">Mentzena</span></a>
+    </div>
+  </nav>
 </body>
 
 </html>

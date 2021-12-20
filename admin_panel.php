@@ -31,8 +31,8 @@ if (!isset($_SESSION['user_permission']) || $_SESSION['user_permission'] != "adm
 
   <nav class="navbar navbar-expand-xxl navbar-dark">
     <div class="adminNav">
-      <a class="navbar-brand"><img id="logoImg" src="images/logo.jpg" alt="Logo"></a>
-      <a class="navbar-brand logomen">Restau<span class="fast-flicker">racja</span> u <span class="flicker">Mentzena</span></a>
+      <a class="navbar-brand" href="index.php"><img id="logoImg" src="images/logo.jpg" alt="Logo"></a>
+      <a class="navbar-brand logomen" href="index.php">Restau<span class="fast-flicker">racja</span> u <span class="flicker">Mentzena</span></a>
     </div>
   </nav>
 
