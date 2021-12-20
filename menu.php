@@ -49,7 +49,7 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
             </tr>';
     $menu = $menuQuery->fetchAll();
     foreach ($menu as $temp) {
-      echo "<tr>
+      echo "<tr id='tlo'>
     <td>{$temp['id']}</td>
     <td>{$temp['name']}</td>
     <td>{$temp['category']}</td>
@@ -87,6 +87,10 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
     body {
       background-color: black !important;
       color: white !important;
+    }
+
+    #tlo:hover {
+      background-color: RGBA(243, 111, 39, 0.5);
     }
 
     table tr td {

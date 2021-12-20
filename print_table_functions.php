@@ -1,3 +1,15 @@
+<html>
+
+<head>
+    <style>
+        table :hover {
+            background-color: RGBA(243, 111, 39, 0.2) !important;
+        }
+    </style>
+</head>
+
+</html>
+
 <?php
 
 function generateProductsQuery($whereCondition)
@@ -68,7 +80,7 @@ function printTable($dataArr, $countArr, $detailsSth, $retPath = "", $button1Vis
         $price = number_format($row['price'], 2);
 
         echo "
-              <tr >
+              <tr>
                   <td class='align-middle'>{$row['pizza']}</td>
                   <td class='align-middle'>{$row['number']}</td>
                   <td class='align-middle'>$price zł</td>

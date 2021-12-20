@@ -179,8 +179,8 @@ if ($dbConnected) {
                 <li>wto. 10:00-18:00</li>
                 <li>sr. 10:00-18:00</li>
                 <li>czw. 10:00-18:00</li>
-                <li>pt. 10:00-18:00</li>
-                <li>sb. 10:00-20:00</li>
+                <li>pt. 10:00-21:00</li>
+                <li>sb. 10:00-21:00</li>
             </ul>
             <p onclick="showDiv()" id="dojazd"> >>> Jak dojechac? *CLICK* <<< </p>
                     <div id="google" style="display:none">
@@ -198,7 +198,7 @@ if ($dbConnected) {
             <ul>
                 <li><a href="https://www.facebook.com/slawomirmentzen" target="_blank"><img src="images/footer/facebook.png" alt="Facebook" id="fb"></a></li>
                 <li><a href="https://twitter.com/SlawomirMentzen?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank"><img src="images/footer/twitter.png" alt="Twitter" id="tw"></a></li>
-                <li><a href="https://www.youtube.com/watch?v=njqEBOntE9I" target="_blank"><img src="images/footer/youtube.png" alt="Youtube" id="yt"></a></li>
+                <li><a href="https://youtu.be/njqEBOntE9I?t=27" target="_blank"><img src="images/footer/youtube.png" alt="Youtube" id="yt"></a></li>
                 <li><a href="https://www.instagram.com/slawomirmentzen/?hl=pl" target="_blank"><img src="images/footer/instagram.png" alt="Instagram" id="insta"></a></li>
             </ul>
             <div id="copyright">Copyright © 2021</div>
