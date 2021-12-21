@@ -19,12 +19,6 @@
       text-align: center;
     }
 
-    .center_form {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-    }
-
     .absolute {
       width: 80%;
       max-width: 800px;

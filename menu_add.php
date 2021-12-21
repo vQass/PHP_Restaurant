@@ -41,7 +41,7 @@ if (isset($_SESSION['ve_description'])) {
 
   <style>
     body {
-      background-color: black;
+      background-color: rgba(0, 0, 0, 0.90) !important;
       color: white;
     }
 

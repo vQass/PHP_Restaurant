@@ -45,10 +45,18 @@ if (isset($_SESSION['ve_number'])) {
       color: white;
     }
 
+    .center {
+      text-align: center;
+    }
+
     .mb-3 {
       width: 30%;
       margin-left: auto;
       margin-right: auto;
+    }
+
+    .table>tbody>tr>td {
+      vertical-align: middle;
     }
 
     .absolute {
@@ -107,7 +115,7 @@ if (isset($_SESSION['ve_number'])) {
   </div>
   <?php
   if (isset($_SESSION['koszyk'])) {
-    echo '<table class="center table " style="width: 80%; margin-left:auto; margin-right:auto; color: red;">
+    echo '<table class="center table" style="width: 40%; margin-left:auto; margin-right:auto; color: red;">
             <tr>
                 <th>Nazwa</th>
                 <th>Ilosc</th>

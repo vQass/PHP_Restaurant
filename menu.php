@@ -61,10 +61,10 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
       echo "
     <td >
         <form method='post' action ='$pMenuEdit'> 
-            <button name='edit' class='btn btn-outline-primary' type='submit' value='{$temp['id']}'>Edytuj</button>
+            <button name='edit' class='btn btn-outline-primary' style='width: 70px' type='submit' value='{$temp['id']}'>Edytuj</button>
         </form>
         <form method='post' action='$pMenuDelete'> 
-            <button name='delete' class='btn btn-outline-danger' type='submit' value='{$temp['id']}'>Usuń</button>
+            <button name='delete' class='btn btn-outline-danger' style='width: 70px; margin-top:5px;' type='submit' value='{$temp['id']}'>Usuń</button>
         </form>  
         </td>
     </tr>";
@@ -85,7 +85,7 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
   <title>Menu</title>
   <style>
     body {
-      background-color: black !important;
+      background-color: rgba(0, 0, 0, 0.90) !important;
       color: white !important;
     }
 
@@ -106,6 +106,10 @@ if (isset($_SESSION['user_permission']) && $_SESSION['user_permission'] == "admi
       display: flex;
       gap: 10px;
       justify-content: center;
+    }
+
+    .table>tbody>tr>td {
+      vertical-align: middle;
     }
 
     .absolute {
