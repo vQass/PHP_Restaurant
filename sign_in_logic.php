@@ -16,9 +16,8 @@ try {
   $email = $_POST['email'];
   $pass = $_POST['password'];
 
-  // sprawdzic pozniej nazwy tabel
   $sth = $dbh->prepare("SELECT id, email, password, permission FROM users WHERE email = ? AND isActive");
-  //
+
   if ($sth->execute(array($email))) {
     $recordCount = $sth->rowCount();
 
@@ -34,7 +33,7 @@ try {
 
         $_SESSION['general_message'] .= SuccessMessageGenerator("Witaj $name!");
 
-        header("Location: $pHome"); // zmienic pozniej
+        header("Location: $pHome");
       } else {
 
         // Błędne hasło dla podanego loginu

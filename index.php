@@ -2,7 +2,7 @@
 
 session_start();
 require_once "paths.php";
-require_once "$pSharedFunctions"; // w finalnej wersji można usunąć, na razie do testów alertów  
+require_once "$pSharedFunctions";
 require_once "$pIndexLogic";
 
 
@@ -139,7 +139,7 @@ if ($dbConnected) {
         <h1 id="menu">Menu:</h1>
         <div class="MenuPage">
             <?php
-            // chyba git nie mam innego pomysłu jak to zrobić
+
             foreach ($tmp as $kat) {
                 $menuQuery = $dbh->prepare('SELECT * FROM menu WHERE category = :kategoria');
                 $menuQuery->bindValue(':kategoria', $kat['category'], PDO::PARAM_STR);
@@ -152,7 +152,6 @@ if ($dbConnected) {
                     echo '<div class="ProductContainer">';
                     echo "<img class='ProductImage' src='Menu/{$temp['photo']}'>";
                     echo '<div class="ProductBG"></div>';
-                    //echo "<input type='submit' class='ProductButton' value='+' name='{$temp['id']}'>";
                     echo "<div class='ProductPrice'> ";
                     echo number_format($temp['price'], 2);
                     echo "</div>";
@@ -287,7 +286,6 @@ if ($dbConnected) {
             <h1>Zamówienie:</h1>
             <div class="orders">
                 <?php
-                // chyba git nie mam innego pomysłu jak to zrobić
                 foreach ($basket as $order) {
                     echo "<div class='order'>";
                     echo "<div class='order_name'>" . $order['name'] . "</div>";

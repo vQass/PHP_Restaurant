@@ -6,11 +6,7 @@ if (!isset($_SESSION['user_email'])) {
     header("Location: $pHome");
     exit();
 }
-// To musiałem usunąć bo nie bedzię zasetowane po wprowadzeniu formularza z danymi zamówienia
-// if (!isset($_POST['dodaj_zam'])) {
-//     header("Location: $pOrders");
-//     exit();
-// }
+
 if (!isset($_SESSION['idOrders'])) {
     header("Location: $pOrders");
     $_SESSION['general_message'] = ErrorMessageGenerator("Z jakiegos powodu nie przekazano id zamówienia");

@@ -136,11 +136,6 @@ if (isset($_POST['email'])) {
 
             $password = sha1($password);
             // Dodawanie nowego użytkownika do bazy danych
-            // żeby działał prepare i execute trzeba chyba po VALUES( zrobić to samo co wcześniej czyli $nameQuery2 = ":name"; a potem w execute $nameQuery3 = "':name' => $name, "
-            // generalnie dużo zmiennych, dużo roboty ale do zrobienia
-
-            // $sth = $dbh->prepare("INSERT INTO `users`($nameQuery $cityQuery $addressQuery $phoneQuery `password`, `email`) VALUES (:name, :city, :address, :phone, :password, :email)");
-            // $sth->execute(array(':name' => $name,  ':city' => $city, ':address' => $address, ':phone' => $phone, ':password' => $password, ':email' => $email));
 
             $sth = $dbh->query("INSERT INTO `users`($nameQuery $cityQuery $addressQuery $phoneQuery `password`, `email`) VALUES ($name $city $address $phone '$password','$email')");
 

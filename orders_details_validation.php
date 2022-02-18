@@ -54,8 +54,7 @@ if (isset($_POST['name'])) {
       $data_valid = false;
     }
     // Pobrac kody promocyjne i sprawdzic czy wprowadzony kod jest poprwany, jak nie to kod ustawic na 'Brak'
-    // W przyszłości można wrócić do zamówienia z informacją, że brak podanego kodu promocyjnego
-    // Na ten moment nie ma na to czasu
+
     $code = $_POST['code'];
     $_SESSION['od_code'] = $code;
 
