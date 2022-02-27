@@ -9,18 +9,26 @@ Administrator panel allows owners to manage menu and users. Employee panel allow
 
 ## Preview images
 ![Home page](Preview/Home.jpg)
-Home page
+<p align="center">
+    Home page
+</p>
 
-![Preview/AdminPanelMenu.jpg]
-Menu editing in administrator panel
+![AdminPanelMenu](Preview/AdminPanelMenu.jpg)
+<p align="center">
+    Menu editing in administrator panel
+</p>
 
-![Preview/AdminPanelUsers.jpg]
-List of users in administrator panel
+![AdminPanelUsers.jpg](Preview/AdminPanelUsers.jpg)
+<p align="center">
+    List of users in administrator panel
+</p>
 
-![Preview/AdminPanelUserEdit.jpg]
-Editing user in administrator panel
+![AdminPanelUserEdit.jpg](Preview/AdminPanelUserEdit.jpg)
+<p align="center">
+    Editing user in administrator panel
+</p>
 
-![Preview/AdminPanelUserOrders.jpg]
-List of orders of a user in administrator panel
-
-
+![AdminPanelUserOrders.jpg](Preview/AdminPanelUserOrders.jpg)
+<p align="center">
+    List of orders of a user in administrator panel
+</p>
