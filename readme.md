@@ -8,7 +8,7 @@ Administrator panel allows owners to manage menu and users. Employee panel allow
 
 
 ## Preview images
-![Preview/Home.jpg]
+![Home page](Preview/Home.jpg)
 Home page
 
 ![Preview/AdminPanelMenu.jpg]
